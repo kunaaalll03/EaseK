@@ -3,34 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ease - Find Your Perfect Homestay</title> <!-- More descriptive title -->
+    <title>Ease Homestays - Modern Stays, Simply Found</title> <!-- Updated Title -->
 
-    <!-- Favicon Placeholder (Replace # with actual path if you have one) -->
+    <!-- Favicon Placeholder -->
     <link rel="icon" href="#" type="image/x-icon">
 
     <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> <!-- Added 500 weight -->
 
     <!-- Bulma CSS CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
-    <!-- Your Custom CSS (Overrides and Additions) -->
+    <!-- Your Custom CSS (Overrides and Refinements) -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Font Awesome CDN (Keep commented out unless needed) -->
+    <!-- Font Awesome CDN (Optional - for icons) -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> -->
 
 </head>
 <body>
 
-    <!-- Header: Using 'header' tag for semantics -->
+    <!-- Header -->
     <header>
-        <nav id="main-navbar" class="navbar is-fixed-top has-shadow" role="navigation" aria-label="main navigation">
+        <nav id="main-navbar" class="navbar is-fixed-top has-shadow is-transparent-navbar" role="navigation" aria-label="main navigation"> <!-- Added class for transparency toggle -->
             <div class="container">
                 <div class="navbar-brand">
-                    <a class="navbar-item site-logo" href="#hero"> <!-- Added class for logo -->
+                    <a class="navbar-item site-logo" href="#hero">
                         <img src="Untitled design.png" alt="Ease Homestays Logo" class="ease-logo-img">
                     </a>
                     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarEaseMenu">
@@ -39,92 +39,98 @@
                         <span aria-hidden="true"></span>
                     </a>
                 </div>
-
                 <div id="navbarEaseMenu" class="navbar-menu">
                     <div class="navbar-end">
                         <a class="navbar-item" href="#hero">Home</a>
-                        <a class="navbar-item" href="#features">Features</a>
+                        <a class="navbar-item" href="#features">Why Ease?</a> <!-- Changed Text -->
                         <a class="navbar-item" href="#destinations">Destinations</a>
                         <a class="navbar-item" href="#contact">Contact</a>
+                         <!-- Optional Login/Signup -->
+                        <!-- <div class="navbar-item">
+                            <div class="buttons">
+                                <a class="button is-primary"><strong>Sign up</strong></a>
+                                <a class="button is-light">Log in</a>
+                            </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
         </nav>
     </header>
 
-    <!-- Main Content Area -->
+    <!-- Main Content -->
     <main>
         <!-- Hero Section -->
-        <section id="hero" class="hero is-link is-medium is-bold">
-            <div class="hero-background-shapes" aria-hidden="true"> <!-- Hide decorative elements from screen readers -->
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-                <div class="shape shape-3"></div>
-            </div>
+        <section id="hero" class="hero is-medium is-link is-bold hero-modern"> <!-- Changed class -->
             <div class="hero-body">
                 <div class="container has-text-centered hero-content">
-                    <!-- Using H1 for the main page heading -->
-                    <h1 class="title is-1 hero-title anim-fade-up">Find Your Perfect <br> Homestay Experience</h1>
-                    <p class="subtitle is-4 hero-subtitle anim-fade-up">Affordable, comfortable, and welcoming stays curated just for you.</p>
-                    <a href="#destinations" class="button is-primary is-large is-rounded hero-button anim-fade-up"> <!-- Changed to anchor link -->
-                        <span>Explore Stays</span>
+                    <!-- Added a subtitle/tagline above main title -->
+                    <p class="subtitle is-6 hero-tagline anim-reveal">Your next unforgettable stay awaits.</p>
+                    <h1 class="title is-1 hero-title anim-reveal">Find Your Perfect <br> Homestay Experience</h1>
+                    <p class="subtitle is-5 hero-subtitle anim-reveal">Affordable, comfortable, and welcoming stays curated just for you.</p>
+                    <a href="#destinations" class="button is-primary is-medium is-rounded hero-button anim-reveal"> <!-- Adjusted size -->
+                        <span>Discover Stays</span>
                     </a>
                 </div>
+            </div>
+             <!-- Subtle background elements (optional) -->
+            <div class="hero-bg-elements" aria-hidden="true">
+                <span class="hero-bg-el el-1"></span>
+                <span class="hero-bg-el el-2"></span>
+                <span class="hero-bg-el el-3"></span>
             </div>
         </section>
 
         <!-- Features Section -->
-        <section id="features" class="section features-section"> <!-- Added specific class -->
+        <section id="features" class="section features-section">
             <div class="container">
-                 <!-- Using H2 for section heading -->
-                <h2 class="title is-2 has-text-centered section-title anim-fade-up">Why Choose Ease?</h2>
+                <h2 class="title is-2 has-text-centered section-title anim-fade-up">Why Book With Ease?</h2>
                 <div class="columns is-multiline is-centered feature-list">
-                    <!-- Feature Item Structure (Repeat for others) -->
+                    <!-- Feature Item Structure (Repeat) -->
                     <div class="column is-one-quarter-desktop is-half-tablet feature-item anim-fade-up">
-                        <div class="card has-text-centered">
-                            <div class="card-content">
-                                <div class="feature-icon-wrapper"> <!-- Wrapper for icon animation -->
-                                    <span class="feature-icon" aria-hidden="true">⭐</span>
+                        <div class="card raise-on-hover"> <!-- Added hover effect class -->
+                            <div class="card-content has-text-centered">
+                                <div class="feature-icon-wrapper mb-4">
+                                    <span class="feature-icon icon is-large has-text-primary">⭐</span> <!-- Using Bulma icon class -->
                                 </div>
-                                <!-- Using H3 for card titles -->
-                                <h3 class="title is-4">Handpicked Stays</h3>
-                                <p class="subtitle is-6">Every homestay is verified for quality and comfort.</p>
+                                <h3 class="title is-4 mb-2">Handpicked Stays</h3>
+                                <p class="subtitle is-6">Verified quality & comfort for a worry-free stay.</p>
                             </div>
                         </div>
                     </div>
                     <!-- Feature 2 -->
-                     <div class="column is-one-quarter-desktop is-half-tablet feature-item anim-fade-up">
-                        <div class="card has-text-centered">
-                            <div class="card-content">
-                                <div class="feature-icon-wrapper">
-                                     <span class="feature-icon" aria-hidden="true">💰</span>
+                    <div class="column is-one-quarter-desktop is-half-tablet feature-item anim-fade-up">
+                        <div class="card raise-on-hover">
+                            <div class="card-content has-text-centered">
+                                <div class="feature-icon-wrapper mb-4">
+                                     <span class="feature-icon icon is-large has-text-primary">💰</span>
                                 </div>
-                                <h3 class="title is-4">Affordable Prices</h3>
+                                <h3 class="title is-4 mb-2">Affordable Prices</h3>
                                 <p class="subtitle is-6">Get the best value without compromising on experience.</p>
                             </div>
                         </div>
                     </div>
                     <!-- Feature 3 -->
                      <div class="column is-one-quarter-desktop is-half-tablet feature-item anim-fade-up">
-                        <div class="card has-text-centered">
-                            <div class="card-content">
-                               <div class="feature-icon-wrapper">
-                                     <span class="feature-icon" aria-hidden="true">🤝</span>
+                        <div class="card raise-on-hover">
+                            <div class="card-content has-text-centered">
+                               <div class="feature-icon-wrapper mb-4">
+                                     <span class="feature-icon icon is-large has-text-primary">🤝</span>
                                 </div>
-                                <h3 class="title is-4">Local Hosts</h3>
-                                <p class="subtitle is-6">Connect with friendly hosts for an authentic stay.</p>
+                                <h3 class="title is-4 mb-2">Local Hosts</h3>
+                                <p class="subtitle is-6">Connect with friendly hosts for an authentic experience.</p>
                             </div>
                         </div>
                     </div>
                     <!-- Feature 4 -->
                      <div class="column is-one-quarter-desktop is-half-tablet feature-item anim-fade-up">
-                        <div class="card has-text-centered">
-                            <div class="card-content">
-                                <div class="feature-icon-wrapper">
-                                     <span class="feature-icon" aria-hidden="true">🔒</span>
+                        <div class="card raise-on-hover">
+                            <div class="card-content has-text-centered">
+                                <div class="feature-icon-wrapper mb-4">
+                                     <span class="feature-icon icon is-large has-text-primary">🔒</span>
                                 </div>
-                                <h3 class="title is-4">Secure Booking</h3>
-                                <p class="subtitle is-6">Easy and secure online booking process.</p>
+                                <h3 class="title is-4 mb-2">Secure Booking</h3>
+                                <p class="subtitle is-6">Easy, safe, and reliable online booking process.</p>
                             </div>
                         </div>
                     </div>
@@ -133,220 +139,183 @@
         </section>
 
          <!-- Destinations Section -->
-         <section id="destinations" class="section destinations-section"> <!-- Added specific class -->
+         <section id="destinations" class="section destinations-section has-background-light"> <!-- Light background -->
             <div class="container">
                 <h2 class="title is-2 has-text-centered section-title anim-fade-up">Popular Destinations</h2>
                 <div class="columns is-multiline is-centered destination-list">
-                    <!-- Destination Card Structure (Repeat for others) -->
-                    <article class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up"> <!-- Use article for self-contained content -->
-                        <div class="card">
+                    <!-- Destination Card Structure (Repeat) - Added Placeholder Images -->
+                    <article class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                        <div class="card raise-on-hover"> <!-- Added hover effect -->
                             <div class="card-image">
-                                <!-- Placeholder for actual image -->
                                 <figure class="image is-4by3 dest-image-placeholder">
-                                    <!-- Add actual image here later: <img src="images/delhi.jpg" alt="Homestays in New Delhi"> -->
+                                    <img src="https://source.unsplash.com/400x300/?delhi,india" loading="lazy" alt="Homestays in New Delhi"> <!-- Unsplash Placeholder -->
                                 </figure>
                             </div>
                             <div class="card-content">
-                                <h3 class="title is-4">New Delhi</h3>
-                                <div class="content">
-                                    <p class="destination-location mb-1">Delhi</p>
-                                    <p><strong>4688</strong> Properties</p>
-                                </div>
-                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
+                                <h3 class="title is-5 mb-1">New Delhi</h3> <!-- Smaller title -->
+                                <p class="destination-location subtitle is-7 has-text-grey">Delhi • 4688 Properties</p> <!-- Combined info -->
+                                <a href="#" class="button is-primary is-outlined is-small is-fullwidth mt-3 dest-link">Explore</a> <!-- Changed button -->
                             </div>
                         </div>
                     </article>
-                    <!-- Mumbai -->
+                     <!-- Mumbai -->
                     <article class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
-                        <div class="card">
+                        <div class="card raise-on-hover">
                             <div class="card-image">
-                                <figure class="image is-4by3 dest-image-placeholder"></figure>
+                                <figure class="image is-4by3 dest-image-placeholder">
+                                     <img src="https://source.unsplash.com/400x300/?mumbai,skyline" loading="lazy" alt="Homestays in Mumbai">
+                                </figure>
                             </div>
-                            <div class="card-content">
-                                <h3 class="title is-4">Mumbai</h3>
-                                <div class="content">
-                                    <p class="destination-location mb-1">Maharashtra</p>
-                                    <p><strong>1766</strong> Properties</p>
-                                </div>
-                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
+                           <div class="card-content">
+                                <h3 class="title is-5 mb-1">Mumbai</h3>
+                                <p class="destination-location subtitle is-7 has-text-grey">Maharashtra • 1766 Properties</p>
+                                <a href="#" class="button is-primary is-outlined is-small is-fullwidth mt-3 dest-link">Explore</a>
                             </div>
                         </div>
                     </article>
                     <!-- Goa -->
-                    <article class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-4by3 dest-image-placeholder"></figure>
-                            </div>
-                            <div class="card-content">
-                                <h3 class="title is-4">Goa</h3>
-                                <div class="content">
-                                    <p class="destination-location mb-1">Goa</p>
-                                    <p><strong>4728</strong> Properties</p>
-                                </div>
-                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
-                            </div>
-                        </div>
-                    </article>
-                    <!-- Chennai -->
-                    <article class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-4by3 dest-image-placeholder"></figure>
-                            </div>
-                            <div class="card-content">
-                                <h3 class="title is-4">Chennai</h3>
-                                <div class="content">
-                                    <p class="destination-location mb-1">Tamil Nadu</p>
-                                    <p><strong>1401</strong> Properties</p>
-                                </div>
-                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
-                            </div>
-                        </div>
-                    </article>
-                    <!-- Kolkata -->
                      <article class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
-                        <div class="card">
+                        <div class="card raise-on-hover">
                             <div class="card-image">
-                                <figure class="image is-4by3 dest-image-placeholder"></figure>
+                                <figure class="image is-4by3 dest-image-placeholder">
+                                     <img src="https://source.unsplash.com/400x300/?goa,beach" loading="lazy" alt="Homestays in Goa">
+                                </figure>
                             </div>
                             <div class="card-content">
-                                <h3 class="title is-4">Kolkata</h3>
-                                <div class="content">
-                                    <p class="destination-location mb-1">West Bengal</p>
-                                    <p><strong>968</strong> Properties</p>
-                                </div>
-                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
-                            </div>
-                        </div>
-                    </article>
-                    <!-- Hyderabad -->
-                     <article class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-4by3 dest-image-placeholder"></figure>
-                            </div>
-                            <div class="card-content">
-                                <h3 class="title is-4">Hyderabad</h3>
-                                <div class="content">
-                                    <p class="destination-location mb-1">Telangana</p>
-                                    <p><strong>1527</strong> Properties</p>
-                                </div>
-                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
+                                <h3 class="title is-5 mb-1">Goa</h3>
+                                <p class="destination-location subtitle is-7 has-text-grey">Goa • 4728 Properties</p>
+                                <a href="#" class="button is-primary is-outlined is-small is-fullwidth mt-3 dest-link">Explore</a>
                             </div>
                         </div>
                     </article>
                     <!-- Bengaluru -->
                      <article class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
-                        <div class="card">
+                        <div class="card raise-on-hover">
                             <div class="card-image">
-                                <figure class="image is-4by3 dest-image-placeholder"></figure>
+                                <figure class="image is-4by3 dest-image-placeholder">
+                                     <img src="https://source.unsplash.com/400x300/?bengaluru,city" loading="lazy" alt="Homestays in Bengaluru">
+                                </figure>
                             </div>
                             <div class="card-content">
-                                <h3 class="title is-4">Bengaluru</h3>
-                                <div class="content">
-                                    <p class="destination-location mb-1">Karnataka</p>
-                                    <p><strong>3106</strong> Properties</p>
-                                </div>
-                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
+                                <h3 class="title is-5 mb-1">Bengaluru</h3>
+                                <p class="destination-location subtitle is-7 has-text-grey">Karnataka • 3106 Properties</p>
+                                <a href="#" class="button is-primary is-outlined is-small is-fullwidth mt-3 dest-link">Explore</a>
                             </div>
                         </div>
                     </article>
-                    <!-- Jaipur -->
-                     <article class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-4by3 dest-image-placeholder"></figure>
-                            </div>
-                            <div class="card-content">
-                                <h3 class="title is-4">Jaipur</h3>
-                                <div class="content">
-                                    <p class="destination-location mb-1">Rajasthan</p>
-                                    <p><strong>1901</strong> Properties</p>
-                                </div>
-                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
-                            </div>
-                        </div>
-                    </article>
-                    <!-- Add remaining destinations similarly -->
-
-                </div> <!-- End columns -->
-            </div> <!-- End container -->
-        </section> <!-- End destinations section -->
+                    <!-- Add more destinations similarly -->
+                </div>
+                <div class="has-text-centered mt-5 pt-3"> <!-- Added padding top -->
+                    <a href="#" class="button is-link is-medium">View All Destinations</a>
+                </div>
+            </div>
+        </section>
 
          <!-- Contact Section -->
-         <section id="contact" class="section has-background-light contact-section"> <!-- Added specific class -->
+         <section id="contact" class="section contact-section"> <!-- Removed background class, default white -->
              <div class="container">
                  <div class="columns is-vcentered">
                      <!-- Contact Information -->
                      <div class="column is-half contact-info anim-fade-left">
                         <h2 class="title is-2 section-title">Get In Touch</h2>
-                        <p class="subtitle is-5">Have questions or need help finding the perfect stay? Reach out to us!</p>
-                        <div class="content contact-details">
-                            <ul>
-                                <!-- Wrap contact info in links where appropriate -->
-                                <li>
-                                    <span class="icon mr-3" aria-hidden="true">📧</span>
+                        <p class="subtitle is-5">Have questions or need help? Our team is ready to assist you!</p>
+                        <div class="content contact-details mt-5">
+                            <p class="mb-4">
+                                <span class="icon-text">
+                                    <span class="icon has-text-primary"><i class="fas fa-envelope"></i></span> <!-- Requires FA -->
                                     <a href="mailto:hello@easehomestays.com">hello@easehomestays.com</a>
-                                </li>
-                                <li>
-                                    <span class="icon mr-3" aria-hidden="true">📞</span>
+                                </span>
+                            </p>
+                            <p class="mb-4">
+                                <span class="icon-text">
+                                    <span class="icon has-text-primary"><i class="fas fa-phone"></i></span> <!-- Requires FA -->
                                     <a href="tel:+1234567890">+1 (234) 567-890</a>
-                                </li>
-                                <li>
-                                    <span class="icon mr-3" aria-hidden="true">📍</span>
-                                    <span>123 Ease St, Comfort City</span> <!-- Address not typically a link -->
-                                </li>
-                            </ul>
+                                </span>
+                             </p>
+                            <p>
+                                <span class="icon-text">
+                                    <span class="icon has-text-primary"><i class="fas fa-map-marker-alt"></i></span> <!-- Requires FA -->
+                                    <span>123 Ease St, Comfort City</span>
+                                </span>
+                            </p>
                         </div>
                     </div>
                     <!-- Contact Form -->
                     <div class="column is-half contact-form anim-fade-right">
-                        <form id="ease-contact-form"> <!-- Add ID for potential JS interaction -->
-                            <div class="field">
-                                <label class="label" for="contact-name">Name</label> <!-- Use 'for' attribute -->
-                                <div class="control">
-                                    <input class="input" type="text" id="contact-name" name="name" placeholder="Your Name" required aria-required="true">
+                         <div class="box contact-form-box"> <!-- Added box for visual separation -->
+                            <form id="ease-contact-form">
+                                <div class="field">
+                                    <label class="label is-small" for="contact-name">Name</label>
+                                    <div class="control">
+                                        <input class="input" type="text" id="contact-name" name="name" placeholder="Your Name" required>
+                                    </div>
                                 </div>
-                            </div>
-                             <div class="field">
-                                <label class="label" for="contact-email">Email</label>
-                                <div class="control"> <!-- Removed icon for simplicity unless FontAwesome is added -->
-                                    <input class="input" type="email" id="contact-email" name="email" placeholder="Your Email" required aria-required="true">
+                                <div class="field">
+                                    <label class="label is-small" for="contact-email">Email</label>
+                                    <div class="control">
+                                        <input class="input" type="email" id="contact-email" name="email" placeholder="Your Email Address" required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="field">
-                                <label class="label" for="contact-message">Message</label>
-                                <div class="control">
-                                    <textarea class="textarea" id="contact-message" name="message" placeholder="Your Message" rows="5" required aria-required="true"></textarea>
+                                <div class="field">
+                                    <label class="label is-small" for="contact-message">Message</label>
+                                    <div class="control">
+                                        <textarea class="textarea" id="contact-message" name="message" placeholder="How can we help?" rows="4" required></textarea>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="field">
-                                <div class="control">
-                                    <button type="submit" class="button is-link contact-button">Send Message</button>
+                                <div class="field mt-5">
+                                    <div class="control">
+                                        <button type="submit" class="button is-primary is-fullwidth is-medium contact-button">Send Message</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                  </div>
              </div>
          </section>
-
     </main>
 
     <!-- Footer Section -->
-    <footer class="footer site-footer"> <!-- Added specific class -->
-        <div class="content has-text-centered">
-             <div class="footer-logo mb-4">
-                <a href="#hero"><img src="Untitled design.png" alt="Ease Logo" style="height: 30px;"></a>
-             </div>
-             <p>
-                 Discover affordable and comfortable homestays with Ease.
-             </p>
-             <p>
-                Built with <a href="https://bulma.io" target="_blank" rel="noopener noreferrer">Bulma</a> & Firebase Studio.
-             </p>
-            <p class="has-text-grey is-size-7 mt-4">© 2024 Ease Homestays by Kunal. All rights reserved.</p>
+    <footer class="footer site-footer">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-one-third">
+                     <div class="footer-logo mb-3">
+                        <a href="#hero"><img src="Untitled design.png" alt="Ease Logo" style="height: 30px;"></a>
+                     </div>
+                     <p class="is-size-7 has-text-grey">Making homestay booking simple, affordable, and reliable for modern travelers.</p>
+                </div>
+                <div class="column">
+                    <h6 class="title is-6 footer-heading">Quick Links</h6>
+                    <ul>
+                        <li><a href="#features">Why Ease?</a></li>
+                        <li><a href="#destinations">Destinations</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="column">
+                     <h6 class="title is-6 footer-heading">Support</h6>
+                    <ul>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h6 class="title is-6 footer-heading">Connect</h6>
+                    <div class="social-links">
+                         <a href="#" aria-label="Facebook" class="icon is-medium has-text-grey"><i class="fab fa-facebook-f"></i></a>
+                         <a href="#" aria-label="Instagram" class="icon is-medium has-text-grey"><i class="fab fa-instagram"></i></a>
+                         <a href="#" aria-label="Twitter" class="icon is-medium has-text-grey"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="footer-hr">
+            <div class="content has-text-centered">
+                 <p class="is-size-7 has-text-grey-light">© 2024 Ease Homestays by Kunal. All Rights Reserved.</p>
+            </div>
         </div>
     </footer>
 
@@ -354,7 +323,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-    <!-- Link to your JavaScript file -->
+    <!-- Your JavaScript file -->
     <script src="main.js" defer></script>
 
 </body>

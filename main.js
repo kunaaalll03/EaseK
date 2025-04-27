@@ -1,39 +1,63 @@
-// Ease Website - main.js with Bulma, GSAP Animations & Refinements
+// Ease Website - main.js - Modern Refined Edition
 
 gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded. Initializing improved animations...');
+    console.log('DOM loaded. Initializing modern refined animations...');
 
     // --- Helper Functions ---
     const select = (selector) => document.querySelector(selector);
     const selectAll = (selector) => document.querySelectorAll(selector);
 
-    // --- Bulma Navbar Burger Toggle ---
+    // --- Navbar Burger Toggle ---
     const setupNavbarToggle = () => {
-        const navbarBurgers = Array.prototype.slice.call(selectAll('.navbar-burger'), 0);
-        if (navbarBurgers.length > 0) {
-            navbarBurgers.forEach( el => {
-                el.addEventListener('click', () => {
-                    const target = el.dataset.target;
-                    const $target = document.getElementById(target);
-                    el.classList.toggle('is-active');
-                    $target.classList.toggle('is-active');
-                });
+        const navbarBurgers = Array.from(selectAll('.navbar-burger'));
+        navbarBurgers.forEach(el => {
+            el.addEventListener('click', () => {
+                const target = el.dataset.target;
+                const $target = document.getElementById(target);
+                el.classList.toggle('is-active');
+                $target.classList.toggle('is-active');
             });
-        }
+        });
     };
+
+    // --- Navbar Scroll Effect ---
+    const setupNavbarScroll = () => {
+        const navbar = select('#main-navbar');
+        if (!navbar) return;
+        // Use ScrollTrigger to add/remove class based on scroll position
+        ScrollTrigger.create({
+            start: 50, // Start adding class after scrolling 50px
+            end: 99999,
+            // markers: true, // for debugging
+            onUpdate: self => {
+                if (self.isActive && !navbar.classList.contains('is-scrolled')) {
+                    navbar.classList.add('is-scrolled');
+                    navbar.classList.remove('is-transparent-navbar');
+                } else if (!self.isActive && navbar.classList.contains('is-scrolled')) {
+                    navbar.classList.remove('is-scrolled');
+                    navbar.classList.add('is-transparent-navbar');
+                }
+            },
+            // Use toggleClass for simpler fade-in/out if preferred (no blur needed)
+            // toggleClass: { className: 'is-scrolled', targets: navbar }
+        });
+    };
+
 
     // --- Smooth Scrolling ---
     const setupSmoothScroll = () => {
-        selectAll('.navbar-menu a[href^="#"], .navbar-brand a[href^="#"], .hero-button[href^="#"]').forEach(anchor => {
+        selectAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (!href || href === '#' || !href.startsWith('#')) return;
+
                 e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = select(targetId);
+                const targetElement = select(href);
                 const navbarHeight = select('#main-navbar')?.offsetHeight || 52;
 
-                if(targetElement) {
+                if (targetElement) {
                     const navbarMenu = select('#navbarEaseMenu');
                     const navbarBurger = select('.navbar-burger[data-target="navbarEaseMenu"]');
                     if (navbarMenu?.classList.contains('is-active')) {
@@ -41,15 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         navbarBurger?.classList.remove('is-active');
                     }
 
-                    let targetPosition = targetElement.offsetTop - navbarHeight;
-                    if (targetId === '#hero') {
-                        targetPosition = 0;
-                    }
+                    let targetPosition = targetElement.offsetTop - navbarHeight - 10; // Add small offset
+                    if (href === '#hero') targetPosition = 0;
 
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
                 }
             });
         });
@@ -57,120 +76,116 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- GSAP Animations ---
     const initAnimations = () => {
-        // General Animation Defaults
         const defaultEase = "power3.out";
-        const defaultDuration = 0.9;
+        const defaultDuration = 0.8; // Slightly faster default
 
-        // Hero Section Entrance Animation
-        const heroTl = gsap.timeline({ delay: 0.3, defaults: { ease: defaultEase } });
-        heroTl.fromTo(".hero-title.anim-fade-up",
-                { y: 60, opacity: 0 },
-                { y: 0, opacity: 1, duration: 1.2 }
-            )
-            .fromTo(".hero-subtitle.anim-fade-up",
-                { y: 50, opacity: 0 },
-                { y: 0, opacity: 1, duration: 1 },
-                "-=0.9" // Overlap timing
-            )
-            .fromTo(".hero-button.anim-fade-up",
-                { y: 40, opacity: 0, scale: 0.9 },
-                { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.5)" },
-                "-=0.7"
-            );
-
-        // Hero Background Shape Parallax on Scroll
-        gsap.utils.toArray('.hero-background-shapes .shape').forEach((shape, i) => {
-            let depth = 1 + i * 0.2; // Adjust depth factor for different shapes
-            gsap.to(shape, {
-                y: (index, target) => ScrollTrigger.maxScroll(window) * 0.1 * depth, // Move slower based on depth
-                // x: (index, target) => ScrollTrigger.maxScroll(window) * 0.05 * depth * (i % 2 === 0 ? -1 : 1), // Optional horizontal movement
-                ease: "none",
-                scrollTrigger: {
-                    trigger: "#hero",
-                    start: "top top",
-                    end: "bottom top",
-                    scrub: 1.5 + depth // Slower scrub for deeper elements
+        // Hero Entrance Animation (Staggered lines/elements)
+        gsap.utils.toArray('.hero-content .anim-reveal').forEach((el, index) => {
+            gsap.fromTo(el,
+                { opacity: 0, y: 40 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: defaultDuration,
+                    ease: defaultEase,
+                    delay: 0.2 + index * 0.15 // Stagger start time
                 }
-            });
+            );
         });
 
+         // Hero Background Elements Subtle Animation
+         gsap.utils.toArray('.hero-bg-el').forEach((el, index) => {
+             gsap.fromTo(el,
+                { y: gsap.utils.random(-20, 20), x: gsap.utils.random(-20, 20) }, // Random start offset
+                {
+                    y: `random(-40, 40)`, // Random end offset
+                    x: `random(-40, 40)`,
+                    duration: gsap.utils.random(8, 12), // Random duration
+                    ease: "sine.inOut",
+                    repeat: -1,
+                    yoyo: true,
+                    delay: index * 1.5 // Stagger start times
+                });
+         });
 
-        // Reusable Scroll-Triggered Fade-Up Animation Function
-        const animateOnScroll = (selector, triggerEl, staggerVal = 0.1, fromState = { y: 50, opacity: 0 }) => {
+        // General Scroll Animation Function
+        const animateOnScroll = (selector, triggerEl = null, fromState = { opacity: 0, y: 50 }, staggerVal = 0.1) => {
             const elements = gsap.utils.toArray(selector);
             if (elements.length === 0) return;
 
-            gsap.fromTo(elements,
-                fromState,
-                {
-                    y: 0,
-                    x: 0,
-                    opacity: 1,
-                    duration: defaultDuration,
-                    ease: defaultEase,
-                    stagger: staggerVal,
-                    scrollTrigger: {
-                        trigger: triggerEl || elements[0].parentNode, // Use parent if no trigger defined
-                        start: "top 85%", // When element top hits 85% from viewport top
-                        toggleActions: "play none none none", // Play once on enter
-                        // markers: true, // Uncomment for debugging
-                    }
+            gsap.fromTo(elements, fromState, {
+                opacity: 1, y: 0, x: 0, // Ensure target state is reset
+                duration: defaultDuration,
+                ease: defaultEase,
+                stagger: staggerVal,
+                scrollTrigger: {
+                    trigger: triggerEl || elements[0].parentNode,
+                    start: "top 85%", // Start when 85% from top enters viewport
+                    end: "bottom top", // Prevent re-triggering immediately if element is tall
+                    toggleActions: "play none none none", // Play once
+                    // markers: true,
                 }
-            );
+            });
         };
 
         // Animate Section Titles
-        animateOnScroll('.section-title.anim-fade-up', null, 0);
+        animateOnScroll('.section-title.anim-fade-up', null, { opacity: 0, y: 40 }, 0);
 
         // Animate Feature Items
-        animateOnScroll('#features .feature-item.anim-fade-up', '#features .feature-list');
+        animateOnScroll('#features .feature-item.anim-fade-up', '#features .feature-list', { opacity: 0, y: 40 }, 0.1);
 
         // Animate Destination Cards
-        animateOnScroll('#destinations .destination-card.anim-fade-up', '#destinations .destination-list');
+        animateOnScroll('#destinations .destination-card.anim-fade-up', '#destinations .destination-list', { opacity: 0, y: 40 }, 0.1);
 
-        // Animate Contact Section Elements
-        animateOnScroll('.contact-info.anim-fade-left', '#contact .columns', 0, { x: -50, opacity: 0 });
-        // Add slight delay to the form animation start
-        gsap.delayedCall(0.15, () => {
-             animateOnScroll('.contact-form.anim-fade-right', '#contact .columns', 0, { x: 50, opacity: 0 });
+        // Animate Contact Section Sides
+        animateOnScroll('.contact-info.anim-fade-left', '#contact .columns', { opacity: 0, x: -40 }, 0);
+        // Use a slight delay on the right side for flow
+        gsap.delayedCall(0.1, () => {
+             animateOnScroll('.contact-form.anim-fade-right', '#contact .columns', { opacity: 0, x: 40 }, 0);
         });
-
     };
 
      // --- Button Click Feedback ---
      const setupButtonClickFeedback = () => {
-        selectAll('.hero-button, .contact-button').forEach(button => {
-            button.addEventListener('click', (e) => {
-                // Only animate if it's not a form submission prevented elsewhere
-                 if (button.type !== 'submit' || !button.closest('form')) {
-                    gsap.to(button, { scale: 0.97, duration: 0.1, yoyo: true, repeat: 1 });
-                 }
-                 // Note: Form submission feedback is handled in its own listener
-            });
+        // General Button Scale Feedback
+        selectAll('.button:not(.contact-button)').forEach(button => {
+            button.addEventListener('mousedown', () => gsap.to(button, { scale: 0.96, duration: 0.1 }));
+            button.addEventListener('mouseup', () => gsap.to(button, { scale: 1, duration: 0.1 }));
+            button.addEventListener('mouseleave', () => gsap.to(button, { scale: 1, duration: 0.1 })); // Reset if mouse leaves while pressed
         });
 
+        // Contact Form Submission
         const contactForm = select('#ease-contact-form');
         if (contactForm) {
             contactForm.addEventListener('submit', (e) => {
-                e.preventDefault(); // Prevent actual submission
+                e.preventDefault();
                 const button = contactForm.querySelector('.contact-button');
-                gsap.to(button, { scale: 0.97, duration: 0.1, yoyo: true, repeat: 1 });
-                console.log('Contact form submitted! (Simulation)');
-                // Add a small delay before alert for effect
-                setTimeout(() => {
-                    alert('Message sent! (Simulation - No backend configured)');
-                    // contactForm.reset(); // Optionally clear the form
-                }, 200);
+                button.disabled = true;
+                button.textContent = 'Sending...';
+
+                gsap.to(button, { scale: 0.96, duration: 0.1, onComplete: () => {
+                    setTimeout(() => { // Simulate sending
+                        button.textContent = 'Message Sent!';
+                        gsap.to(button, { backgroundColor: 'hsl(141, 71%, 48%)', borderColor: 'hsl(141, 71%, 48%)', color:'white', scale: 1, duration: 0.2 }); // Use Bulma success color
+                        // Optionally reset form: contactForm.reset();
+                        // Optionally re-enable button after delay
+                         setTimeout(() => {
+                            button.disabled = false;
+                            button.textContent = 'Send Message';
+                            gsap.to(button, { backgroundColor: '', borderColor: '', color:'', duration: 0.2 }); // Reset style
+                         }, 3000);
+                    }, 800); // Simulate network delay
+                }});
             });
         }
      };
 
-
     // --- Initialization ---
     setupNavbarToggle();
+    setupNavbarScroll();
     setupSmoothScroll();
     initAnimations();
     setupButtonClickFeedback();
 
-    console.log('Ease website initialized!');
+    console.log('Ease website modern refined edition initialized!');
 });
