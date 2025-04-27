@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- GSAP Animations ---
     const initAnimations = () => {
         const defaultEase = "power3.out";
-        const defaultDuration = 0.8; // Slightly faster default
+        const defaultDuration = 0.8;
 
         // Hero Entrance Animation (Staggered lines/elements)
         gsap.utils.toArray('.hero-content .anim-reveal').forEach((el, index) => {
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     y: 0,
                     duration: defaultDuration,
                     ease: defaultEase,
-                    delay: 0.2 + index * 0.15 // Stagger start time
+                    delay: 0.2 + index * 0.15
                 }
             );
         });
@@ -92,15 +92,15 @@ document.addEventListener('DOMContentLoaded', () => {
          // Hero Background Elements Subtle Animation
          gsap.utils.toArray('.hero-bg-el').forEach((el, index) => {
              gsap.fromTo(el,
-                { y: gsap.utils.random(-20, 20), x: gsap.utils.random(-20, 20) }, // Random start offset
+                { y: gsap.utils.random(-20, 20), x: gsap.utils.random(-20, 20) },
                 {
-                    y: `random(-40, 40)`, // Random end offset
+                    y: `random(-40, 40)`,
                     x: `random(-40, 40)`,
-                    duration: gsap.utils.random(8, 12), // Random duration
+                    duration: gsap.utils.random(8, 12),
                     ease: "sine.inOut",
                     repeat: -1,
                     yoyo: true,
-                    delay: index * 1.5 // Stagger start times
+                    delay: index * 1.5
                 });
          });
 
@@ -110,15 +110,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if (elements.length === 0) return;
 
             gsap.fromTo(elements, fromState, {
-                opacity: 1, y: 0, x: 0, // Ensure target state is reset
+                opacity: 1, y: 0, x: 0,
                 duration: defaultDuration,
                 ease: defaultEase,
                 stagger: staggerVal,
                 scrollTrigger: {
                     trigger: triggerEl || elements[0].parentNode,
-                    start: "top 85%", // Start when 85% from top enters viewport
-                    end: "bottom top", // Prevent re-triggering immediately if element is tall
-                    toggleActions: "play none none none", // Play once
+                    start: "top 85%",
+                    end: "bottom top",
+                    toggleActions: "play none none none",
                     // markers: true,
                 }
             });
@@ -135,7 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Animate Contact Section Sides
         animateOnScroll('.contact-info.anim-fade-left', '#contact .columns', { opacity: 0, x: -40 }, 0);
-        // Use a slight delay on the right side for flow
         gsap.delayedCall(0.1, () => {
              animateOnScroll('.contact-form.anim-fade-right', '#contact .columns', { opacity: 0, x: 40 }, 0);
         });
@@ -143,14 +142,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
      // --- Button Click Feedback ---
      const setupButtonClickFeedback = () => {
-        // General Button Scale Feedback
         selectAll('.button:not(.contact-button)').forEach(button => {
             button.addEventListener('mousedown', () => gsap.to(button, { scale: 0.96, duration: 0.1 }));
             button.addEventListener('mouseup', () => gsap.to(button, { scale: 1, duration: 0.1 }));
-            button.addEventListener('mouseleave', () => gsap.to(button, { scale: 1, duration: 0.1 })); // Reset if mouse leaves while pressed
+            button.addEventListener('mouseleave', () => gsap.to(button, { scale: 1, duration: 0.1 }));
         });
 
-        // Contact Form Submission
         const contactForm = select('#ease-contact-form');
         if (contactForm) {
             contactForm.addEventListener('submit', (e) => {
@@ -160,17 +157,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.textContent = 'Sending...';
 
                 gsap.to(button, { scale: 0.96, duration: 0.1, onComplete: () => {
-                    setTimeout(() => { // Simulate sending
+                    setTimeout(() => {
                         button.textContent = 'Message Sent!';
-                        gsap.to(button, { backgroundColor: 'hsl(141, 71%, 48%)', borderColor: 'hsl(141, 71%, 48%)', color:'white', scale: 1, duration: 0.2 }); // Use Bulma success color
-                        // Optionally reset form: contactForm.reset();
-                        // Optionally re-enable button after delay
+                        gsap.to(button, { backgroundColor: 'hsl(141, 71%, 48%)', borderColor: 'hsl(141, 71%, 48%)', color:'white', scale: 1, duration: 0.2 });
                          setTimeout(() => {
                             button.disabled = false;
                             button.textContent = 'Send Message';
-                            gsap.to(button, { backgroundColor: '', borderColor: '', color:'', duration: 0.2 }); // Reset style
+                            gsap.to(button, { backgroundColor: '', borderColor: '', color:'', duration: 0.2 });
                          }, 3000);
-                    }, 800); // Simulate network delay
+                    }, 800);
                 }});
             });
         }

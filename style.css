@@ -1,20 +1,20 @@
 /**
- * Custom Stylesheet for Ease Homestays - Modern Refined Edition
- * ------------------------------------------------------------
+ * Custom Stylesheet for Ease Homestays - Modern Refined Edition V2 (Fixes)
+ * ----------------------------------------------------------------------
  */
 
 /* --- Variables & Global Styles --- */
 :root {
     /* Refined Color Palette */
-    --ease-primary: hsl(205, 70%, 55%); /* Slightly softer, modern blue */
+    --ease-primary: hsl(205, 70%, 55%);
     --ease-primary-dark: hsl(205, 70%, 45%);
     --ease-link: var(--ease-primary);
-    --ease-text: hsl(210, 15%, 25%);    /* Dark grey for text */
-    --ease-text-light: hsl(210, 12%, 55%); /* Lighter grey */
+    --ease-text: hsl(210, 15%, 25%);
+    --ease-text-light: hsl(210, 12%, 55%);
     --ease-background: hsl(0, 0%, 100%);
-    --ease-light-bg: hsl(210, 30%, 97%); /* Very subtle light bg */
-    --ease-border: hsl(210, 25%, 92%);    /* Softer border */
-    --ease-accent: hsl(35, 90%, 65%);  /* Subtle warm accent (optional) */
+    --ease-light-bg: hsl(210, 30%, 97%);
+    --ease-border: hsl(210, 25%, 92%);
+    --ease-accent: hsl(35, 90%, 65%);
 
     /* Fonts */
     --body-font: 'Poppins', sans-serif;
@@ -36,21 +36,21 @@
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-html { scroll-behavior: smooth; font-size: 16px; } /* Base font size */
+html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
     font-family: var(--body-font);
     color: var(--ease-text);
     background-color: var(--ease-background);
-    padding-top: 3.25rem; /* Bulma navbar height */
-    overflow-x: clip; /* Use clip instead of hidden */
+    padding-top: 3.25rem;
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 /* --- Typography --- */
-.title { font-weight: 600; color: var(--ease-text); }
-.subtitle { color: var(--ease-text-light); font-weight: 400; line-height: 1.5; /* Add line-height for subtitles */}
+.title { font-weight: 600; color: var(--ease-text); line-height: 1.2; }
+.subtitle { color: var(--ease-text-light); font-weight: 400; line-height: 1.5; }
 .title.is-1 { font-size: 3rem; line-height: 1.1; }
 .title.is-2 { font-size: 2.25rem; }
 .title.is-4 { font-size: 1.25rem; }
@@ -65,7 +65,7 @@ a:hover { color: var(--ease-primary-dark); }
 #main-navbar.is-transparent-navbar { background-color: transparent; box-shadow: none; }
 #main-navbar { transition: background-color var(--transition-std), box-shadow var(--transition-std); }
 #main-navbar.is-scrolled { background-color: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); box-shadow: var(--shadow-sm); }
-.site-logo .ease-logo-img { max-height: 32px; transition: transform var(--transition-std); } /* Slightly smaller logo */
+.site-logo .ease-logo-img { max-height: 32px; transition: transform var(--transition-std); }
 .site-logo:hover .ease-logo-img { transform: scale(1.08); }
 .navbar-item { font-weight: 500; transition: color var(--transition-fast); padding-top: 0.75rem; padding-bottom: 0.75rem; }
 .navbar-item:hover, .navbar-item:focus, .navbar-item.is-active { background-color: transparent !important; color: var(--ease-primary) !important; }
@@ -73,7 +73,7 @@ a:hover { color: var(--ease-primary-dark); }
 /* --- Hero Section --- */
 .hero-modern {
     background: linear-gradient(145deg, var(--ease-primary) 0%, hsl(205, 70%, 65%) 100%);
-    overflow: hidden; /* Contain bg elements */
+    overflow: hidden;
     position: relative;
 }
 .hero-tagline { color: rgba(255, 255, 255, 0.8); font-weight: 500; margin-bottom: var(--spacing-sm); }
@@ -81,12 +81,8 @@ a:hover { color: var(--ease-primary-dark); }
 #hero .subtitle.is-5 { color: rgba(255, 255, 255, 0.9); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-xl); max-width: 600px; margin-left: auto; margin-right: auto; }
 .hero-button { background-color: white; color: var(--ease-primary); font-weight: 600; box-shadow: var(--shadow-md); transition: transform var(--transition-std), box-shadow var(--transition-std); }
 .hero-button:hover { background-color: white; color: var(--ease-primary-dark); transform: translateY(-3px) scale(1.02); box-shadow: var(--shadow-lg); }
-/* Subtle rotating background elements */
 .hero-bg-elements { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-.hero-bg-el {
-    position: absolute; border-radius: 50%; background-color: rgba(255, 255, 255, 0.08);
-    animation: rotate-scale 30s infinite linear alternate;
-}
+.hero-bg-el { position: absolute; border-radius: 50%; background-color: rgba(255, 255, 255, 0.08); animation: rotate-scale 30s infinite linear alternate; }
 .hero-bg-el.el-1 { width: 300px; height: 300px; top: -50px; left: -100px; animation-duration: 40s; }
 .hero-bg-el.el-2 { width: 400px; height: 400px; bottom: -150px; right: -150px; animation-duration: 35s; animation-delay: -5s; }
 .hero-bg-el.el-3 { width: 150px; height: 150px; top: 30%; right: 15%; animation-duration: 25s; animation-delay: -10s;}
@@ -94,34 +90,24 @@ a:hover { color: var(--ease-primary-dark); }
 
 /* --- General Section Styling --- */
 .section { padding: var(--spacing-xxxl) var(--spacing-lg); }
-.section-title { padding-bottom: var(--spacing-sm); margin-bottom: var(--spacing-xxxl) !important; /* Increased margin */ font-weight: 700; }
+.section-title { padding-bottom: var(--spacing-sm); margin-bottom: var(--spacing-xxxl) !important; font-weight: 700; }
 .section-title::after { display: none; }
-/* Add subtle top border to sections on light bg */
 .destinations-section, .contact-section:not(.has-background-light) { border-top: 1px solid var(--ease-border); }
 .features-section { background-color: var(--ease-background); }
 .destinations-section { background-color: var(--ease-light-bg); }
 
 /* --- Features Section --- */
 .feature-list { gap: var(--spacing-lg) 0; }
-.feature-item .card { border: none; background-color: transparent; box-shadow: none; transition: transform var(--transition-std); padding: var(--spacing-sm); height: 100%; /* Ensure cards have height */}
-.feature-item .card-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Align content top */
-    height: 100%;
-}
+.feature-item .card { border: none; background-color: transparent; box-shadow: none; transition: transform var(--transition-std); padding: var(--spacing-sm); height: 100%; display: flex; }
+.feature-item .card-content { display: flex; flex-direction: column; justify-content: flex-start; align-items: center; height: 100%; width: 100%; padding: var(--spacing-md); }
 .feature-icon { font-size: 2rem !important; line-height: 1; }
-.feature-icon-wrapper { transition: transform var(--transition-std); min-height: 3rem; /* Ensure space for icon */}
+.feature-icon-wrapper { transition: transform var(--transition-std); min-height: 3rem; }
 .feature-item .card:hover .feature-icon-wrapper { transform: scale(1.1) rotate(-5deg); }
-#features .title.is-4 { font-weight: 600; margin-bottom: var(--spacing-sm) !important; }
-/* === FIX for Feature subtitle === */
+.feature-title { font-weight: 600 !important; line-height: 1.3; margin-bottom: var(--spacing-sm) !important; }
 .feature-subtitle {
-    line-height: 1.5;
-    color: var(--ease-text-light);
-    flex-grow: 1; /* Allow subtitle to take space if needed */
-    word-break: break-word; /* Break long words if necessary */
-    hyphens: auto; /* Add hyphens */
-    min-height: 4.5em; /* Ensure roughly 3 lines of space minimum */
+    font-size: 0.85rem; line-height: 1.6; color: var(--ease-text-light);
+    flex-grow: 1; width: 100%;
+    word-wrap: break-word; overflow-wrap: break-word; /* Better word wrapping */
 }
 
 /* --- Card Hover Effect --- */
@@ -130,44 +116,35 @@ a:hover { color: var(--ease-primary-dark); }
 
 /* --- Destinations Section --- */
 .destination-list { gap: var(--spacing-lg) 0; }
-.destination-card .card { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--ease-border); background-color: white; box-shadow: var(--shadow-sm); height: 100%; } /* Add height */
-.destination-card .card-content {
-    padding: var(--spacing-md); /* Adjusted padding */
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Ensure content takes full height */
-}
-.dest-image-placeholder { height: 180px; background-color: #eee; }
+.destination-card .card { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--ease-border); background-color: white; box-shadow: var(--shadow-sm); height: 100%; display: flex; flex-direction: column; }
+.destination-card .card-content { padding: var(--spacing-md); display: flex; flex-direction: column; flex-grow: 1; }
+.dest-image-placeholder { height: 180px; background-color: #eee; flex-shrink: 0; }
 .dest-image-placeholder img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition-med); }
 .destination-card .card:hover img { transform: scale(1.08); }
-/* === FIX for Destination title/location === */
 .destination-title {
-    font-weight: 600 !important; /* Ensure weight */
+    font-weight: 600 !important; line-height: 1.3;
     margin-bottom: var(--spacing-xs) !important;
-    line-height: 1.3; /* Adjust line height */
-    word-break: break-word;
+    word-wrap: break-word; overflow-wrap: break-word; /* Ensure wrapping */
 }
 .destination-location {
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    line-height: 1.4; /* Adjust line height */
-    margin-bottom: var(--spacing-md); /* Add margin below location */
+    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;
+    line-height: 1.4; color: var(--ease-text-light);
+    margin-bottom: var(--spacing-md); /* Ensure space before button */
+    word-wrap: break-word; overflow-wrap: break-word; /* Ensure wrapping */
 }
 .dest-link {
-    margin-top: auto; /* Push button to bottom */
-    align-self: flex-start;
-    border-radius: var(--radius-sm);
-    font-weight: 500;
+    margin-top: auto; align-self: flex-start; flex-shrink: 0;
+    border-radius: var(--radius-sm); font-weight: 500;
     transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
 }
 .dest-link:hover { background-color: var(--ease-primary); color: white !important; border-color: var(--ease-primary); }
-
 
 /* --- Contact Section --- */
 .contact-info .section-title { text-align: left; }
 .contact-details { margin-top: var(--spacing-xl) !important; }
 .contact-details p { margin-bottom: var(--spacing-lg) !important; }
-.contact-details .icon { vertical-align: middle; width: 1.5em; /* Align icons */ text-align: center; }
+.contact-details .icon { vertical-align: middle; width: 1.5em; text-align: center; margin-right: var(--spacing-sm); /* Add margin to icon */ }
+.contact-details a { word-wrap: break-word; overflow-wrap: break-word; } /* Allow links to wrap */
 .contact-details a:hover { color: var(--ease-primary-dark); }
 .contact-form-box { background-color: white; border-radius: var(--radius-md); box-shadow: var(--shadow-md); padding: var(--spacing-xl); }
 .contact-form .label { font-weight: 500; color: var(--ease-text-light); margin-bottom: var(--spacing-sm); }
@@ -177,7 +154,7 @@ a:hover { color: var(--ease-primary-dark); }
 .contact-button:hover { background-color: var(--ease-primary-dark); transform: translateY(-2px); }
 
 /* --- Footer --- */
-.site-footer { background-color: hsl(210, 10%, 15%); /* Darker footer */ color: hsl(210, 15%, 70%); padding: var(--spacing-xxxl) var(--spacing-lg); }
+.site-footer { background-color: hsl(210, 10%, 15%); color: hsl(210, 15%, 70%); padding: var(--spacing-xxxl) var(--spacing-lg); }
 .site-footer .footer-heading { color: hsl(0, 0%, 100%); font-weight: 600; margin-bottom: var(--spacing-md); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;}
 .site-footer ul { list-style: none; margin-left: 0; }
 .site-footer li { margin-bottom: var(--spacing-sm); }
