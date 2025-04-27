@@ -1,97 +1,165 @@
-/* --- Global Styles & Variables --- */
+/**
+ * Custom Stylesheet for Ease Homestays
+ * ------------------------------------
+ * Overrides and additions to Bulma framework.
+ */
+
+/* --- Variables & Global Styles --- */
 :root {
-    /* Override Bulma's default primary color if needed */
-    /* --bulma-primary: #5e72e4; */
     /* Define custom fonts */
-    /* --logo-font: 'Pacifico', cursive; */ /* No longer needed for text logo */
     --body-font: 'Poppins', sans-serif;
+
+    /* Define Core Colors (Can be used to override Bulma or for custom elements) */
+    --ease-primary: hsl(217, 71%, 53%); /* Default Bulma Blue */
+    --ease-link: hsl(217, 71%, 53%);    /* Link color */
+    --ease-info: hsl(204, 86%, 53%);
+    --ease-success: hsl(141, 53%, 53%);
+    --ease-warning: hsl(48, 100%, 67%);
+    --ease-danger: hsl(348, 100%, 61%);
+    --ease-text: hsl(0, 0%, 29%);       /* Default text color */
+    --ease-text-light: hsl(0, 0%, 48%);
+    --ease-background: hsl(0, 0%, 100%);
+    --ease-light-grey-bg: hsl(0, 0%, 96%); /* Bulma background light */
+    --ease-border: hsl(0, 0%, 86%);
+
+    /* Spacing Units (Example) */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
+
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 15px;
+
+    /* Transitions */
+    --transition-fast: 0.2s ease-in-out;
+    --transition-std: 0.3s ease-in-out;
 }
 
-/* Apply custom body font */
+/* Apply custom body font & ensure smooth scroll */
+html {
+    scroll-behavior: smooth;
+    /* Smooth scroll polyfill might be needed for older browsers */
+}
+
 body {
     font-family: var(--body-font);
-    /* Add some padding top to prevent content going under fixed navbar */
-    padding-top: 52px; /* Adjust based on navbar height */
+    color: var(--ease-text);
+    background-color: var(--ease-background);
+    /* Add padding top to prevent content going under fixed navbar */
+    padding-top: 3.25rem; /* Bulma's default navbar height */
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
-
-/* Apply custom logo font (REMOVED or COMMENTED OUT) */
-/*
-.logo-font {
-    font-family: var(--logo-font);
-    font-size: 1.8rem;
-    font-weight: normal;
-}
-*/
-
-/* === NEW: Styling for the Logo Image === */
-.ease-logo-img {
-    max-height: 36px; /* Adjust the height of the logo as needed */
-    width: auto; /* Maintain aspect ratio */
-}
-/* Bulma overrides default navbar item padding, adjust if logo looks cramped */
-.navbar-brand .navbar-item {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-}
-/* ====================================== */
-
 
 /* Ensure custom fonts are used in headings/titles */
-.title, .subtitle {
+.title, .subtitle, strong {
     font-family: var(--body-font);
+    color: var(--ease-text); /* Ensure titles use standard text color by default */
+}
+.subtitle {
+    color: var(--ease-text-light); /* Make subtitles slightly lighter */
 }
 
-/* --- Navbar Customization --- */
+/* --- Navbar --- */
 #main-navbar {
     /* Add any specific navbar styles here if needed */
+    /* Example: slightly more padding */
+    /* min-height: 4rem; */
 }
 
-/* --- Hero Section Customization --- */
+.site-logo .ease-logo-img {
+    max-height: 36px; /* Adjust the height of the logo */
+    width: auto;
+    transition: transform var(--transition-fast);
+}
+.site-logo:hover .ease-logo-img {
+    transform: scale(1.05);
+}
+.navbar-brand .navbar-item.site-logo {
+    padding-left: var(--spacing-sm);
+    padding-right: var(--spacing-sm);
+}
+.navbar-item {
+    font-weight: 500;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+.navbar-item:hover, .navbar-item:focus {
+    background-color: #f5f5f5 !important; /* Use a subtle hover */
+    color: var(--ease-link) !important;
+}
+
+
+/* --- Hero Section --- */
 #hero {
-    position: relative; /* Needed for absolute positioned shapes */
-    overflow: hidden; /* Contain shapes */
+    position: relative;
+    overflow: hidden;
+    background-color: var(--ease-link); /* Ensure background */
+    /* Example: slightly darker overlay on background image if used */
+    /* background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('path/to/hero.jpg'); */
+    /* background-size: cover; */
+    /* background-position: center; */
 }
 .hero-content {
-    position: relative; /* Ensure content is above shapes */
+    position: relative;
     z-index: 2;
 }
-.hero .title {
-    color: white; /* Ensure title is readable on colored background */
+#hero .title {
+    color: white; /* Override default text color */
+    font-weight: 700;
+    line-height: 1.2;
 }
-.hero .subtitle {
-     color: rgba(255, 255, 255, 0.9); /* Lighter subtitle */
+#hero .subtitle {
+     color: rgba(255, 255, 255, 0.9);
+     margin-top: var(--spacing-md);
+     margin-bottom: var(--spacing-xl);
+}
+.hero-button {
+    transition: transform var(--transition-std), box-shadow var(--transition-std);
+}
+.hero-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* --- Background Shapes Styling (Keep from previous version) --- */
+/* Hero Background Shapes */
 .hero-background-shapes {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     z-index: 1;
+    /* Parallax effect will be added via JS */
 }
 .hero-background-shapes .shape {
     position: absolute;
     border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    background: rgba(255, 255, 255, 0.15); /* Subtle white shapes */
-    animation: blobWiggle 15s infinite ease-in-out alternate;
+    background: rgba(255, 255, 255, 0.1); /* Even more subtle */
+    animation: blobWiggle 18s infinite ease-in-out alternate;
+    will-change: transform; /* Optimize for animation */
 }
-.shape-1 { width: 250px; height: 250px; top: 10%; left: 15%; }
-.shape-2 { width: 120px; height: 120px; top: 65%; right: 12%; animation-delay: -5s; }
-.shape-3 { width: 180px; height: 180px; bottom: 10%; left: 40%; animation-delay: -10s; }
+.shape-1 { width: 280px; height: 280px; top: 8%; left: 12%; animation-duration: 20s; }
+.shape-2 { width: 150px; height: 150px; top: 68%; right: 10%; animation-delay: -6s; animation-duration: 16s; }
+.shape-3 { width: 200px; height: 200px; bottom: 8%; left: 35%; animation-delay: -12s; }
 
+/* Wiggle animation for blobs */
 @keyframes blobWiggle {
     0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: rotate(0deg) scale(1); }
-    50% { border-radius: 50% 50% 35% 65% / 60% 40% 60% 40%; transform: rotate(10deg) scale(1.05); }
+    50% { border-radius: 50% 50% 35% 65% / 60% 40% 60% 40%; transform: rotate(8deg) scale(1.05); }
     100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: rotate(0deg) scale(1); }
 }
 
-/* --- Section Title Underline (Custom) --- */
+/* --- General Section Styling --- */
+.section {
+    padding-top: var(--spacing-xxl);
+    padding-bottom: var(--spacing-xxl);
+}
 .section-title {
     position: relative;
-    padding-bottom: 15px;
-    margin-bottom: 3rem !important; /* Ensure enough space below */
+    padding-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-xxl) !important;
+    font-weight: 600;
 }
 .section-title::after {
     content: '';
@@ -99,58 +167,180 @@ body {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 70px;
-    height: 3px;
-    /* Use Bulma's primary color variable if defined, or a fallback */
-    background-color: var(--bulma-primary, hsl(217, 71%, 53%));
+    width: 80px; /* Slightly wider */
+    height: 4px; /* Slightly thicker */
+    background-color: var(--ease-primary);
     border-radius: 2px;
 }
+/* Left align title/underline for contact info */
+.contact-info .section-title { text-align: left; }
+.contact-info .section-title::after { left: 0; transform: translateX(0); }
 
-/* --- Card Customizations (Optional) --- */
-.card {
-    height: 100%; /* Make cards in a row equal height */
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Lighter shadow */
+/* --- Features Section --- */
+.features-section {
+    background-color: var(--ease-light-grey-bg);
+    /* Optional: subtle pattern */
+    /* background-image: url('data:image/svg+xml,%3Csvg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23dddddd" fill-opacity="0.4" fill-rule="evenodd"%3E%3Cpath d="M5 0h1L0 6V5zM6 5v1H5z"/%3E%3C/g%3E%3C/svg%3E'); */
 }
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1); /* Heavier shadow on hover */
+.feature-list {
+    gap: var(--spacing-lg) 0; /* Add vertical gap for multiline */
 }
-.card .card-content {
-    flex-grow: 1; /* Push footer content down in cards */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Space out content and button */
+.feature-item .card {
+    background-color: var(--ease-background);
+    border: 1px solid var(--ease-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+.feature-item .card:hover {
+     box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+}
+.feature-icon-wrapper {
+    margin-bottom: var(--spacing-lg);
+}
+.feature-icon {
+    font-size: 3rem;
+    color: var(--ease-primary);
+    display: inline-block; /* Needed for transform */
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy effect */
+}
+.feature-item .card:hover .feature-icon {
+    transform: scale(1.2) rotate(15deg);
 }
 #features .card .card-content {
-     justify-content: center; /* Center feature content */
+     justify-content: flex-start; /* Align content top */
 }
-#features .feature-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: var(--bulma-primary, hsl(217, 71%, 53%)); /* Use Bulma primary color */
-    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
-#features .card:hover .feature-icon {
-    transform: rotateY(360deg) scale(1.1);
+#features .title.is-4 {
+    margin-bottom: var(--spacing-sm) !important;
 }
 
-/* --- Destination Card Image Placeholder --- */
+
+/* --- Destinations Section --- */
+.destination-list {
+     gap: var(--spacing-lg) 0; /* Add vertical gap for multiline */
+}
+.destination-card .card {
+    border-radius: var(--radius-md);
+    overflow: hidden; /* Clip image zoom */
+    border: 1px solid var(--ease-border);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+.destination-card .card:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
 .dest-image-placeholder {
-    height: 180px; /* Adjust height */
+    height: 200px;
+    background-color: #eee;
     background-size: cover;
     background-position: center;
-    background-color: #e9ecef; /* Subtle grey placeholder */
+    transition: transform 0.4s ease-out; /* Smooth zoom */
+    position: relative; /* For potential overlay */
 }
-.destination-card .card-content .button {
-    align-self: flex-start; /* Keep button aligned left */
-    margin-top: 1rem; /* Add space above button */
+.dest-image-placeholder::after { /* Subtle overlay */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent 70%, rgba(0,0,0,0.1));
+    opacity: 0;
+    transition: opacity var(--transition-std);
+}
+.destination-card .card:hover .dest-image-placeholder {
+    transform: scale(1.05);
+}
+.destination-card .card:hover .dest-image-placeholder::after {
+    opacity: 1;
+}
+.destination-card .card-content {
+    padding: var(--spacing-lg);
+}
+.destination-card .title.is-4 {
+    margin-bottom: var(--spacing-xs) !important;
+}
+.destination-location {
+    color: var(--ease-text-light);
+    font-size: 0.9rem;
+}
+.destination-card .content p {
+    margin-bottom: var(--spacing-sm) !important; /* Adjust spacing */
+}
+.dest-link {
+    margin-top: auto; /* Push button to bottom */
+    align-self: flex-start;
+    transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+.dest-link:hover {
+    background-color: var(--ease-link) !important;
+    border-color: var(--ease-link) !important;
+    color: white !important;
+    transform: scale(1.03);
 }
 
-/* --- Footer Customization --- */
-.footer {
-    background-color: #f5f5f5; /* Default Bulma footer background */
-    padding: 3rem 1.5rem; /* Adjust padding */
+/* --- Contact Section --- */
+.contact-section {
+    background-color: var(--ease-light-grey-bg);
+}
+.contact-details ul {
+    list-style: none;
+    margin-left: 0;
+}
+.contact-details li {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+.contact-details .icon {
+    color: var(--ease-primary);
+    font-size: 1.2rem; /* Adjust icon size if using FontAwesome */
+}
+.contact-details a {
+    color: var(--ease-link);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+.contact-details a:hover {
+    color: var(--ease-text);
+    text-decoration: underline;
+}
+.contact-form .input,
+.contact-form .textarea {
+    border-radius: var(--radius-sm);
+    border-color: var(--ease-border);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.contact-form .input:focus,
+.contact-form .textarea:focus {
+    border-color: var(--ease-primary);
+    box-shadow: 0 0 0 2px rgba(var(--ease-primary), 0.2); /* Focus ring */
+}
+.contact-button {
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+.contact-button:hover {
+    transform: translateY(-2px);
+    background-color: hsl(217, 71%, 48%); /* Slightly darker link color */
+}
+
+/* --- Footer --- */
+.site-footer {
+    background-color: hsl(0, 0%, 98%); /* Very light grey */
+    padding: var(--spacing-xxl) var(--spacing-lg);
+    border-top: 1px solid var(--ease-border);
+}
+.footer-logo img {
+     opacity: 0.8;
+     transition: opacity var(--transition-fast);
+}
+.footer-logo a:hover img {
+    opacity: 1;
+}
+.site-footer .content p {
+    color: var(--ease-text-light);
+}
+.site-footer a {
+     color: var(--ease-link);
+     text-decoration: none;
+}
+.site-footer a:hover {
+    text-decoration: underline;
 }

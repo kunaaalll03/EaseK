@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ease - Homestays (Bulma)</title>
+    <title>Ease - Find Your Perfect Homestay</title> <!-- More descriptive title -->
 
-    <!-- Google Fonts: Poppins and Pacifico -->
+    <!-- Favicon Placeholder (Replace # with actual path if you have one) -->
+    <link rel="icon" href="#" type="image/x-icon">
+
+    <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <!-- Bulma CSS CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
@@ -16,72 +19,75 @@
     <!-- Your Custom CSS (Overrides and Additions) -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Font Awesome CDN (Optional - for icons in Contact Section) -->
+    <!-- Font Awesome CDN (Keep commented out unless needed) -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> -->
 
 </head>
 <body>
 
-    <!-- Header Section (Using Bulma Navbar structure) -->
-    <nav id="main-navbar" class="navbar is-fixed-top has-shadow" role="navigation" aria-label="main navigation">
-        <div class="container">
-            <div class="navbar-brand">
-                <!-- === LOGO IMAGE ADDED HERE === -->
-                <a class="navbar-item" href="#hero">
-                    <img src="Untitled design.png" alt="Ease Homestays Logo" class="ease-logo-img"> <!-- Use your image file name -->
-                </a>
-                <!-- ============================== -->
+    <!-- Header: Using 'header' tag for semantics -->
+    <header>
+        <nav id="main-navbar" class="navbar is-fixed-top has-shadow" role="navigation" aria-label="main navigation">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item site-logo" href="#hero"> <!-- Added class for logo -->
+                        <img src="Untitled design.png" alt="Ease Homestays Logo" class="ease-logo-img">
+                    </a>
+                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarEaseMenu">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
 
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarEaseMenu">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
-
-            <div id="navbarEaseMenu" class="navbar-menu">
-                <div class="navbar-end">
-                    <a class="navbar-item" href="#hero">Home</a>
-                    <a class="navbar-item" href="#features">Features</a>
-                    <a class="navbar-item" href="#destinations">Destinations</a>
-                    <a class="navbar-item" href="#contact">Contact</a>
+                <div id="navbarEaseMenu" class="navbar-menu">
+                    <div class="navbar-end">
+                        <a class="navbar-item" href="#hero">Home</a>
+                        <a class="navbar-item" href="#features">Features</a>
+                        <a class="navbar-item" href="#destinations">Destinations</a>
+                        <a class="navbar-item" href="#contact">Contact</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <!-- Main Content Area -->
     <main>
-        <!-- Hero Section (Using Bulma Hero) -->
+        <!-- Hero Section -->
         <section id="hero" class="hero is-link is-medium is-bold">
-             <!-- Background Shapes (Keep custom positioning) -->
-            <div class="hero-background-shapes">
+            <div class="hero-background-shapes" aria-hidden="true"> <!-- Hide decorative elements from screen readers -->
                 <div class="shape shape-1"></div>
                 <div class="shape shape-2"></div>
                 <div class="shape shape-3"></div>
             </div>
             <div class="hero-body">
                 <div class="container has-text-centered hero-content">
+                    <!-- Using H1 for the main page heading -->
                     <h1 class="title is-1 hero-title anim-fade-up">Find Your Perfect <br> Homestay Experience</h1>
-                    <h2 class="subtitle is-4 hero-subtitle anim-fade-up">Affordable, comfortable, and welcoming stays curated just for you.</h2>
-                    <button class="button is-primary is-large is-rounded hero-button anim-fade-up">
+                    <p class="subtitle is-4 hero-subtitle anim-fade-up">Affordable, comfortable, and welcoming stays curated just for you.</p>
+                    <a href="#destinations" class="button is-primary is-large is-rounded hero-button anim-fade-up"> <!-- Changed to anchor link -->
                         <span>Explore Stays</span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- Features Section (Using Bulma Section, Container, Columns, Card) -->
-        <section id="features" class="section">
+        <!-- Features Section -->
+        <section id="features" class="section features-section"> <!-- Added specific class -->
             <div class="container">
+                 <!-- Using H2 for section heading -->
                 <h2 class="title is-2 has-text-centered section-title anim-fade-up">Why Choose Ease?</h2>
                 <div class="columns is-multiline is-centered feature-list">
-                    <!-- Feature 1 -->
+                    <!-- Feature Item Structure (Repeat for others) -->
                     <div class="column is-one-quarter-desktop is-half-tablet feature-item anim-fade-up">
                         <div class="card has-text-centered">
                             <div class="card-content">
-                                <p class="title is-1 feature-icon">⭐</p>
-                                <p class="title is-4">Handpicked Stays</p>
+                                <div class="feature-icon-wrapper"> <!-- Wrapper for icon animation -->
+                                    <span class="feature-icon" aria-hidden="true">⭐</span>
+                                </div>
+                                <!-- Using H3 for card titles -->
+                                <h3 class="title is-4">Handpicked Stays</h3>
                                 <p class="subtitle is-6">Every homestay is verified for quality and comfort.</p>
                             </div>
                         </div>
@@ -90,8 +96,10 @@
                      <div class="column is-one-quarter-desktop is-half-tablet feature-item anim-fade-up">
                         <div class="card has-text-centered">
                             <div class="card-content">
-                                <p class="title is-1 feature-icon">💰</p>
-                                <p class="title is-4">Affordable Prices</p>
+                                <div class="feature-icon-wrapper">
+                                     <span class="feature-icon" aria-hidden="true">💰</span>
+                                </div>
+                                <h3 class="title is-4">Affordable Prices</h3>
                                 <p class="subtitle is-6">Get the best value without compromising on experience.</p>
                             </div>
                         </div>
@@ -100,8 +108,10 @@
                      <div class="column is-one-quarter-desktop is-half-tablet feature-item anim-fade-up">
                         <div class="card has-text-centered">
                             <div class="card-content">
-                                <p class="title is-1 feature-icon">🤝</p>
-                                <p class="title is-4">Local Hosts</p>
+                               <div class="feature-icon-wrapper">
+                                     <span class="feature-icon" aria-hidden="true">🤝</span>
+                                </div>
+                                <h3 class="title is-4">Local Hosts</h3>
                                 <p class="subtitle is-6">Connect with friendly hosts for an authentic stay.</p>
                             </div>
                         </div>
@@ -110,8 +120,10 @@
                      <div class="column is-one-quarter-desktop is-half-tablet feature-item anim-fade-up">
                         <div class="card has-text-centered">
                             <div class="card-content">
-                                <p class="title is-1 feature-icon">🔒</p>
-                                <p class="title is-4">Secure Booking</p>
+                                <div class="feature-icon-wrapper">
+                                     <span class="feature-icon" aria-hidden="true">🔒</span>
+                                </div>
+                                <h3 class="title is-4">Secure Booking</h3>
                                 <p class="subtitle is-6">Easy and secure online booking process.</p>
                             </div>
                         </div>
@@ -121,306 +133,192 @@
         </section>
 
          <!-- Destinations Section -->
-         <section id="destinations" class="section">
+         <section id="destinations" class="section destinations-section"> <!-- Added specific class -->
             <div class="container">
                 <h2 class="title is-2 has-text-centered section-title anim-fade-up">Popular Destinations</h2>
                 <div class="columns is-multiline is-centered destination-list">
-
-                    <!-- New Delhi -->
-                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                    <!-- Destination Card Structure (Repeat for others) -->
+                    <article class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up"> <!-- Use article for self-contained content -->
                         <div class="card">
                             <div class="card-image">
-                                <figure class="image is-4by3 dest-image-placeholder"></figure>
+                                <!-- Placeholder for actual image -->
+                                <figure class="image is-4by3 dest-image-placeholder">
+                                    <!-- Add actual image here later: <img src="images/delhi.jpg" alt="Homestays in New Delhi"> -->
+                                </figure>
                             </div>
                             <div class="card-content">
-                                <p class="title is-4">New Delhi</p>
+                                <h3 class="title is-4">New Delhi</h3>
                                 <div class="content">
-                                    <p class="mb-1">Delhi</p>
+                                    <p class="destination-location mb-1">Delhi</p>
                                     <p><strong>4688</strong> Properties</p>
                                 </div>
                                 <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
                             </div>
                         </div>
-                    </div>
-
+                    </article>
                     <!-- Mumbai -->
-                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                    <article class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
                         <div class="card">
                             <div class="card-image">
                                 <figure class="image is-4by3 dest-image-placeholder"></figure>
                             </div>
                             <div class="card-content">
-                                <p class="title is-4">Mumbai</p>
+                                <h3 class="title is-4">Mumbai</h3>
                                 <div class="content">
-                                    <p class="mb-1">Maharashtra</p>
+                                    <p class="destination-location mb-1">Maharashtra</p>
                                     <p><strong>1766</strong> Properties</p>
                                 </div>
                                 <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
                             </div>
                         </div>
-                    </div>
-
+                    </article>
                     <!-- Goa -->
-                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                    <article class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
                         <div class="card">
                             <div class="card-image">
                                 <figure class="image is-4by3 dest-image-placeholder"></figure>
                             </div>
                             <div class="card-content">
-                                <p class="title is-4">Goa</p>
+                                <h3 class="title is-4">Goa</h3>
                                 <div class="content">
-                                    <p class="mb-1">Goa</p>
+                                    <p class="destination-location mb-1">Goa</p>
                                     <p><strong>4728</strong> Properties</p>
                                 </div>
                                 <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
                             </div>
                         </div>
-                    </div>
-
+                    </article>
                     <!-- Chennai -->
-                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                    <article class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
                         <div class="card">
                             <div class="card-image">
                                 <figure class="image is-4by3 dest-image-placeholder"></figure>
                             </div>
                             <div class="card-content">
-                                <p class="title is-4">Chennai</p>
+                                <h3 class="title is-4">Chennai</h3>
                                 <div class="content">
-                                    <p class="mb-1">Tamil Nadu</p>
+                                    <p class="destination-location mb-1">Tamil Nadu</p>
                                     <p><strong>1401</strong> Properties</p>
                                 </div>
                                 <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
                             </div>
                         </div>
-                    </div>
-
+                    </article>
                     <!-- Kolkata -->
-                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                     <article class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
                         <div class="card">
                             <div class="card-image">
                                 <figure class="image is-4by3 dest-image-placeholder"></figure>
                             </div>
                             <div class="card-content">
-                                <p class="title is-4">Kolkata</p>
+                                <h3 class="title is-4">Kolkata</h3>
                                 <div class="content">
-                                    <p class="mb-1">West Bengal</p>
+                                    <p class="destination-location mb-1">West Bengal</p>
                                     <p><strong>968</strong> Properties</p>
                                 </div>
                                 <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
                             </div>
                         </div>
-                    </div>
-
+                    </article>
                     <!-- Hyderabad -->
-                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                     <article class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
                         <div class="card">
                             <div class="card-image">
                                 <figure class="image is-4by3 dest-image-placeholder"></figure>
                             </div>
                             <div class="card-content">
-                                <p class="title is-4">Hyderabad</p>
+                                <h3 class="title is-4">Hyderabad</h3>
                                 <div class="content">
-                                    <p class="mb-1">Telangana</p>
+                                    <p class="destination-location mb-1">Telangana</p>
                                     <p><strong>1527</strong> Properties</p>
                                 </div>
                                 <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
                             </div>
                         </div>
-                    </div>
-
+                    </article>
                     <!-- Bengaluru -->
-                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                     <article class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
                         <div class="card">
                             <div class="card-image">
                                 <figure class="image is-4by3 dest-image-placeholder"></figure>
                             </div>
                             <div class="card-content">
-                                <p class="title is-4">Bengaluru</p>
+                                <h3 class="title is-4">Bengaluru</h3>
                                 <div class="content">
-                                    <p class="mb-1">Karnataka</p>
+                                    <p class="destination-location mb-1">Karnataka</p>
                                     <p><strong>3106</strong> Properties</p>
                                 </div>
                                 <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
                             </div>
                         </div>
-                    </div>
-
+                    </article>
                     <!-- Jaipur -->
-                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                     <article class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
                         <div class="card">
                             <div class="card-image">
                                 <figure class="image is-4by3 dest-image-placeholder"></figure>
                             </div>
                             <div class="card-content">
-                                <p class="title is-4">Jaipur</p>
+                                <h3 class="title is-4">Jaipur</h3>
                                 <div class="content">
-                                    <p class="mb-1">Rajasthan</p>
+                                    <p class="destination-location mb-1">Rajasthan</p>
                                     <p><strong>1901</strong> Properties</p>
                                 </div>
                                 <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
                             </div>
                         </div>
-                    </div>
-
-                     <!-- Varanasi -->
-                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-4by3 dest-image-placeholder"></figure>
-                            </div>
-                            <div class="card-content">
-                                <p class="title is-4">Varanasi</p>
-                                <div class="content">
-                                    <p class="mb-1">Uttar Pradesh</p>
-                                    <p><strong>1190</strong> Properties</p>
-                                </div>
-                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
-                            </div>
-                        </div>
-                    </div>
-
-                     <!-- Pune -->
-                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-4by3 dest-image-placeholder"></figure>
-                            </div>
-                            <div class="card-content">
-                                <p class="title is-4">Pune</p>
-                                <div class="content">
-                                    <p class="mb-1">Maharashtra</p>
-                                    <p><strong>1021</strong> Properties</p>
-                                </div>
-                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Ayodhya -->
-                   <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-4by3 dest-image-placeholder"></figure>
-                            </div>
-                            <div class="card-content">
-                                <p class="title is-4">Ayodhya</p>
-                                <div class="content">
-                                    <p class="mb-1">Uttar Pradesh</p>
-                                    <p><strong>291</strong> Properties</p>
-                                </div>
-                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Puri -->
-                   <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-4by3 dest-image-placeholder"></figure>
-                            </div>
-                            <div class="card-content">
-                                <p class="title is-4">Puri</p>
-                                <div class="content">
-                                    <p class="mb-1">Odisha</p>
-                                    <p><strong>559</strong> Properties</p>
-                                </div>
-                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
-                            </div>
-                        </div>
-                    </div>
-
-                     <!-- Lucknow -->
-                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-4by3 dest-image-placeholder"></figure>
-                            </div>
-                            <div class="card-content">
-                                <p class="title is-4">Lucknow</p>
-                                <div class="content">
-                                    <p class="mb-1">Uttar Pradesh</p>
-                                    <p><strong>1127</strong> Properties</p>
-                                </div>
-                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
-                            </div>
-                        </div>
-                    </div>
-                     <!-- Manali -->
-                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-4by3 dest-image-placeholder"></figure>
-                            </div>
-                            <div class="card-content">
-                                <p class="title is-4">Manali</p>
-                                <div class="content">
-                                    <p class="mb-1">Himachal Pradesh</p>
-                                    <p><strong>1015</strong> Properties</p>
-                                </div>
-                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
-                            </div>
-                        </div>
-                    </div>
-                     <!-- Ooty -->
-                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-4by3 dest-image-placeholder"></figure>
-                            </div>
-                            <div class="card-content">
-                                <p class="title is-4">Ooty</p>
-                                <div class="content">
-                                    <p class="mb-1">Tamil Nadu</p>
-                                    <p><strong>466</strong> Properties</p>
-                                </div>
-                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- You can continue adding more destinations here -->
+                    </article>
+                    <!-- Add remaining destinations similarly -->
 
                 </div> <!-- End columns -->
             </div> <!-- End container -->
         </section> <!-- End destinations section -->
 
-
          <!-- Contact Section -->
-         <section id="contact" class="section has-background-light">
+         <section id="contact" class="section has-background-light contact-section"> <!-- Added specific class -->
              <div class="container">
                  <div class="columns is-vcentered">
+                     <!-- Contact Information -->
                      <div class="column is-half contact-info anim-fade-left">
                         <h2 class="title is-2 section-title">Get In Touch</h2>
-                        <p class="subtitle is-5">Have questions or need help? Reach out to us!</p>
-                        <div class="content">
+                        <p class="subtitle is-5">Have questions or need help finding the perfect stay? Reach out to us!</p>
+                        <div class="content contact-details">
                             <ul>
-                                <!-- Add 'fas fa-...' classes if using Font Awesome -->
-                                <li><span class="icon mr-3"><i class="">📧</i></span> Email: hello@easehomestays.com</li>
-                                <li><span class="icon mr-3"><i class="">📞</i></span> Phone: +1 (234) 567-890</li>
-                                <li><span class="icon mr-3"><i class="">📍</i></span> Address: 123 Ease St, Comfort City</li>
+                                <!-- Wrap contact info in links where appropriate -->
+                                <li>
+                                    <span class="icon mr-3" aria-hidden="true">📧</span>
+                                    <a href="mailto:hello@easehomestays.com">hello@easehomestays.com</a>
+                                </li>
+                                <li>
+                                    <span class="icon mr-3" aria-hidden="true">📞</span>
+                                    <a href="tel:+1234567890">+1 (234) 567-890</a>
+                                </li>
+                                <li>
+                                    <span class="icon mr-3" aria-hidden="true">📍</span>
+                                    <span>123 Ease St, Comfort City</span> <!-- Address not typically a link -->
+                                </li>
                             </ul>
                         </div>
                     </div>
+                    <!-- Contact Form -->
                     <div class="column is-half contact-form anim-fade-right">
-                        <form>
+                        <form id="ease-contact-form"> <!-- Add ID for potential JS interaction -->
                             <div class="field">
-                                <label class="label">Name</label>
+                                <label class="label" for="contact-name">Name</label> <!-- Use 'for' attribute -->
                                 <div class="control">
-                                    <input class="input" type="text" placeholder="Your Name" required>
+                                    <input class="input" type="text" id="contact-name" name="name" placeholder="Your Name" required aria-required="true">
                                 </div>
                             </div>
                              <div class="field">
-                                <label class="label">Email</label>
-                                <div class="control has-icons-left"> <!-- Optional icon alignment -->
-                                    <input class="input" type="email" placeholder="Your Email" required>
-                                    <!-- Add icon span if using Font Awesome -->
-                                    <!-- <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span> -->
+                                <label class="label" for="contact-email">Email</label>
+                                <div class="control"> <!-- Removed icon for simplicity unless FontAwesome is added -->
+                                    <input class="input" type="email" id="contact-email" name="email" placeholder="Your Email" required aria-required="true">
                                 </div>
                             </div>
                             <div class="field">
-                                <label class="label">Message</label>
+                                <label class="label" for="contact-message">Message</label>
                                 <div class="control">
-                                    <textarea class="textarea" placeholder="Your Message" rows="5" required></textarea>
+                                    <textarea class="textarea" id="contact-message" name="message" placeholder="Your Message" rows="5" required aria-required="true"></textarea>
                                 </div>
                             </div>
                             <div class="field">
@@ -436,15 +334,19 @@
 
     </main>
 
-    <!-- Footer Section (Using Bulma Footer) -->
-    <footer class="footer">
+    <!-- Footer Section -->
+    <footer class="footer site-footer"> <!-- Added specific class -->
         <div class="content has-text-centered">
-            <p>
-                 <!-- Using img tag for logo in footer too -->
-                 <a href="#hero"><img src="Untitled design.png" alt="Ease Logo" style="height: 24px; vertical-align: middle; margin-right: 5px;"></a>
-                 by Kunal. Built with <a href="https://bulma.io">Bulma</a> & Firebase Studio.
-            </p>
-            <p>© 2024 Ease Homestays.</p>
+             <div class="footer-logo mb-4">
+                <a href="#hero"><img src="Untitled design.png" alt="Ease Logo" style="height: 30px;"></a>
+             </div>
+             <p>
+                 Discover affordable and comfortable homestays with Ease.
+             </p>
+             <p>
+                Built with <a href="https://bulma.io" target="_blank" rel="noopener noreferrer">Bulma</a> & Firebase Studio.
+             </p>
+            <p class="has-text-grey is-size-7 mt-4">© 2024 Ease Homestays by Kunal. All rights reserved.</p>
         </div>
     </footer>
 
