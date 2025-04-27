@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ease - Homestays (Bulma)</title>
+
+    <!-- Google Fonts: Poppins and Pacifico -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bulma CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+    <!-- Your Custom CSS (Overrides and Additions) -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome CDN (Optional - for icons in Contact Section) -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> -->
+
+</head>
+<body>
+
+    <!-- Header Section (Using Bulma Navbar structure) -->
+    <nav id="main-navbar" class="navbar is-fixed-top has-shadow" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <!-- === LOGO IMAGE ADDED HERE === -->
+                <a class="navbar-item" href="#hero">
+                    <img src="Untitled design.png" alt="Ease Homestays Logo" class="ease-logo-img"> <!-- Use your image file name -->
+                </a>
+                <!-- ============================== -->
+
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarEaseMenu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarEaseMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item" href="#hero">Home</a>
+                    <a class="navbar-item" href="#features">Features</a>
+                    <a class="navbar-item" href="#destinations">Destinations</a>
+                    <a class="navbar-item" href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- Hero Section (Using Bulma Hero) -->
+        <section id="hero" class="hero is-link is-medium is-bold">
+             <!-- Background Shapes (Keep custom positioning) -->
+            <div class="hero-background-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+            <div class="hero-body">
+                <div class="container has-text-centered hero-content">
+                    <h1 class="title is-1 hero-title anim-fade-up">Find Your Perfect <br> Homestay Experience</h1>
+                    <h2 class="subtitle is-4 hero-subtitle anim-fade-up">Affordable, comfortable, and welcoming stays curated just for you.</h2>
+                    <button class="button is-primary is-large is-rounded hero-button anim-fade-up">
+                        <span>Explore Stays</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section (Using Bulma Section, Container, Columns, Card) -->
+        <section id="features" class="section">
+            <div class="container">
+                <h2 class="title is-2 has-text-centered section-title anim-fade-up">Why Choose Ease?</h2>
+                <div class="columns is-multiline is-centered feature-list">
+                    <!-- Feature 1 -->
+                    <div class="column is-one-quarter-desktop is-half-tablet feature-item anim-fade-up">
+                        <div class="card has-text-centered">
+                            <div class="card-content">
+                                <p class="title is-1 feature-icon">⭐</p>
+                                <p class="title is-4">Handpicked Stays</p>
+                                <p class="subtitle is-6">Every homestay is verified for quality and comfort.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Feature 2 -->
+                     <div class="column is-one-quarter-desktop is-half-tablet feature-item anim-fade-up">
+                        <div class="card has-text-centered">
+                            <div class="card-content">
+                                <p class="title is-1 feature-icon">💰</p>
+                                <p class="title is-4">Affordable Prices</p>
+                                <p class="subtitle is-6">Get the best value without compromising on experience.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Feature 3 -->
+                     <div class="column is-one-quarter-desktop is-half-tablet feature-item anim-fade-up">
+                        <div class="card has-text-centered">
+                            <div class="card-content">
+                                <p class="title is-1 feature-icon">🤝</p>
+                                <p class="title is-4">Local Hosts</p>
+                                <p class="subtitle is-6">Connect with friendly hosts for an authentic stay.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Feature 4 -->
+                     <div class="column is-one-quarter-desktop is-half-tablet feature-item anim-fade-up">
+                        <div class="card has-text-centered">
+                            <div class="card-content">
+                                <p class="title is-1 feature-icon">🔒</p>
+                                <p class="title is-4">Secure Booking</p>
+                                <p class="subtitle is-6">Easy and secure online booking process.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <!-- Destinations Section -->
+         <section id="destinations" class="section">
+            <div class="container">
+                <h2 class="title is-2 has-text-centered section-title anim-fade-up">Popular Destinations</h2>
+                <div class="columns is-multiline is-centered destination-list">
+
+                    <!-- New Delhi -->
+                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3 dest-image-placeholder"></figure>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">New Delhi</p>
+                                <div class="content">
+                                    <p class="mb-1">Delhi</p>
+                                    <p><strong>4688</strong> Properties</p>
+                                </div>
+                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mumbai -->
+                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3 dest-image-placeholder"></figure>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Mumbai</p>
+                                <div class="content">
+                                    <p class="mb-1">Maharashtra</p>
+                                    <p><strong>1766</strong> Properties</p>
+                                </div>
+                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Goa -->
+                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3 dest-image-placeholder"></figure>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Goa</p>
+                                <div class="content">
+                                    <p class="mb-1">Goa</p>
+                                    <p><strong>4728</strong> Properties</p>
+                                </div>
+                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chennai -->
+                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3 dest-image-placeholder"></figure>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Chennai</p>
+                                <div class="content">
+                                    <p class="mb-1">Tamil Nadu</p>
+                                    <p><strong>1401</strong> Properties</p>
+                                </div>
+                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kolkata -->
+                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3 dest-image-placeholder"></figure>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Kolkata</p>
+                                <div class="content">
+                                    <p class="mb-1">West Bengal</p>
+                                    <p><strong>968</strong> Properties</p>
+                                </div>
+                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hyderabad -->
+                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3 dest-image-placeholder"></figure>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Hyderabad</p>
+                                <div class="content">
+                                    <p class="mb-1">Telangana</p>
+                                    <p><strong>1527</strong> Properties</p>
+                                </div>
+                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bengaluru -->
+                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3 dest-image-placeholder"></figure>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Bengaluru</p>
+                                <div class="content">
+                                    <p class="mb-1">Karnataka</p>
+                                    <p><strong>3106</strong> Properties</p>
+                                </div>
+                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Jaipur -->
+                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3 dest-image-placeholder"></figure>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Jaipur</p>
+                                <div class="content">
+                                    <p class="mb-1">Rajasthan</p>
+                                    <p><strong>1901</strong> Properties</p>
+                                </div>
+                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- Varanasi -->
+                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3 dest-image-placeholder"></figure>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Varanasi</p>
+                                <div class="content">
+                                    <p class="mb-1">Uttar Pradesh</p>
+                                    <p><strong>1190</strong> Properties</p>
+                                </div>
+                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- Pune -->
+                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3 dest-image-placeholder"></figure>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Pune</p>
+                                <div class="content">
+                                    <p class="mb-1">Maharashtra</p>
+                                    <p><strong>1021</strong> Properties</p>
+                                </div>
+                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ayodhya -->
+                   <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3 dest-image-placeholder"></figure>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Ayodhya</p>
+                                <div class="content">
+                                    <p class="mb-1">Uttar Pradesh</p>
+                                    <p><strong>291</strong> Properties</p>
+                                </div>
+                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Puri -->
+                   <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3 dest-image-placeholder"></figure>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Puri</p>
+                                <div class="content">
+                                    <p class="mb-1">Odisha</p>
+                                    <p><strong>559</strong> Properties</p>
+                                </div>
+                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- Lucknow -->
+                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3 dest-image-placeholder"></figure>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Lucknow</p>
+                                <div class="content">
+                                    <p class="mb-1">Uttar Pradesh</p>
+                                    <p><strong>1127</strong> Properties</p>
+                                </div>
+                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Manali -->
+                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3 dest-image-placeholder"></figure>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Manali</p>
+                                <div class="content">
+                                    <p class="mb-1">Himachal Pradesh</p>
+                                    <p><strong>1015</strong> Properties</p>
+                                </div>
+                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Ooty -->
+                    <div class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3 dest-image-placeholder"></figure>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Ooty</p>
+                                <div class="content">
+                                    <p class="mb-1">Tamil Nadu</p>
+                                    <p><strong>466</strong> Properties</p>
+                                </div>
+                                <a href="#" class="button is-link is-small is-outlined dest-link">Explore Stays</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- You can continue adding more destinations here -->
+
+                </div> <!-- End columns -->
+            </div> <!-- End container -->
+        </section> <!-- End destinations section -->
+
+
+         <!-- Contact Section -->
+         <section id="contact" class="section has-background-light">
+             <div class="container">
+                 <div class="columns is-vcentered">
+                     <div class="column is-half contact-info anim-fade-left">
+                        <h2 class="title is-2 section-title">Get In Touch</h2>
+                        <p class="subtitle is-5">Have questions or need help? Reach out to us!</p>
+                        <div class="content">
+                            <ul>
+                                <!-- Add 'fas fa-...' classes if using Font Awesome -->
+                                <li><span class="icon mr-3"><i class="">📧</i></span> Email: hello@easehomestays.com</li>
+                                <li><span class="icon mr-3"><i class="">📞</i></span> Phone: +1 (234) 567-890</li>
+                                <li><span class="icon mr-3"><i class="">📍</i></span> Address: 123 Ease St, Comfort City</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="column is-half contact-form anim-fade-right">
+                        <form>
+                            <div class="field">
+                                <label class="label">Name</label>
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="Your Name" required>
+                                </div>
+                            </div>
+                             <div class="field">
+                                <label class="label">Email</label>
+                                <div class="control has-icons-left"> <!-- Optional icon alignment -->
+                                    <input class="input" type="email" placeholder="Your Email" required>
+                                    <!-- Add icon span if using Font Awesome -->
+                                    <!-- <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span> -->
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Message</label>
+                                <div class="control">
+                                    <textarea class="textarea" placeholder="Your Message" rows="5" required></textarea>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <button type="submit" class="button is-link contact-button">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                 </div>
+             </div>
+         </section>
+
+    </main>
+
+    <!-- Footer Section (Using Bulma Footer) -->
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                 <!-- Using img tag for logo in footer too -->
+                 <a href="#hero"><img src="Untitled design.png" alt="Ease Logo" style="height: 24px; vertical-align: middle; margin-right: 5px;"></a>
+                 by Kunal. Built with <a href="https://bulma.io">Bulma</a> & Firebase Studio.
+            </p>
+            <p>© 2024 Ease Homestays.</p>
+        </div>
+    </footer>
+
+    <!-- GSAP Core Library & ScrollTrigger Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Link to your JavaScript file -->
+    <script src="main.js" defer></script>
+
+</body>
+</html>

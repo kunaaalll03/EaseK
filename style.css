@@ -1,0 +1,156 @@
+/* --- Global Styles & Variables --- */
+:root {
+    /* Override Bulma's default primary color if needed */
+    /* --bulma-primary: #5e72e4; */
+    /* Define custom fonts */
+    /* --logo-font: 'Pacifico', cursive; */ /* No longer needed for text logo */
+    --body-font: 'Poppins', sans-serif;
+}
+
+/* Apply custom body font */
+body {
+    font-family: var(--body-font);
+    /* Add some padding top to prevent content going under fixed navbar */
+    padding-top: 52px; /* Adjust based on navbar height */
+}
+
+/* Apply custom logo font (REMOVED or COMMENTED OUT) */
+/*
+.logo-font {
+    font-family: var(--logo-font);
+    font-size: 1.8rem;
+    font-weight: normal;
+}
+*/
+
+/* === NEW: Styling for the Logo Image === */
+.ease-logo-img {
+    max-height: 36px; /* Adjust the height of the logo as needed */
+    width: auto; /* Maintain aspect ratio */
+}
+/* Bulma overrides default navbar item padding, adjust if logo looks cramped */
+.navbar-brand .navbar-item {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+/* ====================================== */
+
+
+/* Ensure custom fonts are used in headings/titles */
+.title, .subtitle {
+    font-family: var(--body-font);
+}
+
+/* --- Navbar Customization --- */
+#main-navbar {
+    /* Add any specific navbar styles here if needed */
+}
+
+/* --- Hero Section Customization --- */
+#hero {
+    position: relative; /* Needed for absolute positioned shapes */
+    overflow: hidden; /* Contain shapes */
+}
+.hero-content {
+    position: relative; /* Ensure content is above shapes */
+    z-index: 2;
+}
+.hero .title {
+    color: white; /* Ensure title is readable on colored background */
+}
+.hero .subtitle {
+     color: rgba(255, 255, 255, 0.9); /* Lighter subtitle */
+}
+
+/* --- Background Shapes Styling (Keep from previous version) --- */
+.hero-background-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.hero-background-shapes .shape {
+    position: absolute;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    background: rgba(255, 255, 255, 0.15); /* Subtle white shapes */
+    animation: blobWiggle 15s infinite ease-in-out alternate;
+}
+.shape-1 { width: 250px; height: 250px; top: 10%; left: 15%; }
+.shape-2 { width: 120px; height: 120px; top: 65%; right: 12%; animation-delay: -5s; }
+.shape-3 { width: 180px; height: 180px; bottom: 10%; left: 40%; animation-delay: -10s; }
+
+@keyframes blobWiggle {
+    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: rotate(0deg) scale(1); }
+    50% { border-radius: 50% 50% 35% 65% / 60% 40% 60% 40%; transform: rotate(10deg) scale(1.05); }
+    100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: rotate(0deg) scale(1); }
+}
+
+/* --- Section Title Underline (Custom) --- */
+.section-title {
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 3rem !important; /* Ensure enough space below */
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 3px;
+    /* Use Bulma's primary color variable if defined, or a fallback */
+    background-color: var(--bulma-primary, hsl(217, 71%, 53%));
+    border-radius: 2px;
+}
+
+/* --- Card Customizations (Optional) --- */
+.card {
+    height: 100%; /* Make cards in a row equal height */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Lighter shadow */
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1); /* Heavier shadow on hover */
+}
+.card .card-content {
+    flex-grow: 1; /* Push footer content down in cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space out content and button */
+}
+#features .card .card-content {
+     justify-content: center; /* Center feature content */
+}
+#features .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--bulma-primary, hsl(217, 71%, 53%)); /* Use Bulma primary color */
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+#features .card:hover .feature-icon {
+    transform: rotateY(360deg) scale(1.1);
+}
+
+/* --- Destination Card Image Placeholder --- */
+.dest-image-placeholder {
+    height: 180px; /* Adjust height */
+    background-size: cover;
+    background-position: center;
+    background-color: #e9ecef; /* Subtle grey placeholder */
+}
+.destination-card .card-content .button {
+    align-self: flex-start; /* Keep button aligned left */
+    margin-top: 1rem; /* Add space above button */
+}
+
+/* --- Footer Customization --- */
+.footer {
+    background-color: #f5f5f5; /* Default Bulma footer background */
+    padding: 3rem 1.5rem; /* Adjust padding */
+}
