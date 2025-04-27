@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ease Homestays - Modern Stays, Simply Found</title> <!-- Updated Title -->
+    <title>Ease Homestays - Modern Stays, Simply Found</title>
 
     <!-- Favicon Placeholder -->
     <link rel="icon" href="#" type="image/x-icon">
@@ -11,7 +11,7 @@
     <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> <!-- Added 500 weight -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Bulma CSS CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
@@ -19,15 +19,15 @@
     <!-- Your Custom CSS (Overrides and Refinements) -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Font Awesome CDN (Optional - for icons) -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> -->
+    <!-- Font Awesome CDN (Optional - needed for icons below) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 </head>
 <body>
 
     <!-- Header -->
     <header>
-        <nav id="main-navbar" class="navbar is-fixed-top has-shadow is-transparent-navbar" role="navigation" aria-label="main navigation"> <!-- Added class for transparency toggle -->
+        <nav id="main-navbar" class="navbar is-fixed-top has-shadow is-transparent-navbar" role="navigation" aria-label="main navigation">
             <div class="container">
                 <div class="navbar-brand">
                     <a class="navbar-item site-logo" href="#hero">
@@ -42,16 +42,9 @@
                 <div id="navbarEaseMenu" class="navbar-menu">
                     <div class="navbar-end">
                         <a class="navbar-item" href="#hero">Home</a>
-                        <a class="navbar-item" href="#features">Why Ease?</a> <!-- Changed Text -->
+                        <a class="navbar-item" href="#features">Why Ease?</a>
                         <a class="navbar-item" href="#destinations">Destinations</a>
                         <a class="navbar-item" href="#contact">Contact</a>
-                         <!-- Optional Login/Signup -->
-                        <!-- <div class="navbar-item">
-                            <div class="buttons">
-                                <a class="button is-primary"><strong>Sign up</strong></a>
-                                <a class="button is-light">Log in</a>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -61,19 +54,17 @@
     <!-- Main Content -->
     <main>
         <!-- Hero Section -->
-        <section id="hero" class="hero is-medium is-link is-bold hero-modern"> <!-- Changed class -->
+        <section id="hero" class="hero is-medium is-link is-bold hero-modern">
             <div class="hero-body">
                 <div class="container has-text-centered hero-content">
-                    <!-- Added a subtitle/tagline above main title -->
                     <p class="subtitle is-6 hero-tagline anim-reveal">Your next unforgettable stay awaits.</p>
                     <h1 class="title is-1 hero-title anim-reveal">Find Your Perfect <br> Homestay Experience</h1>
                     <p class="subtitle is-5 hero-subtitle anim-reveal">Affordable, comfortable, and welcoming stays curated just for you.</p>
-                    <a href="#destinations" class="button is-primary is-medium is-rounded hero-button anim-reveal"> <!-- Adjusted size -->
+                    <a href="#destinations" class="button is-primary is-medium is-rounded hero-button anim-reveal">
                         <span>Discover Stays</span>
                     </a>
                 </div>
             </div>
-             <!-- Subtle background elements (optional) -->
             <div class="hero-bg-elements" aria-hidden="true">
                 <span class="hero-bg-el el-1"></span>
                 <span class="hero-bg-el el-2"></span>
@@ -88,13 +79,13 @@
                 <div class="columns is-multiline is-centered feature-list">
                     <!-- Feature Item Structure (Repeat) -->
                     <div class="column is-one-quarter-desktop is-half-tablet feature-item anim-fade-up">
-                        <div class="card raise-on-hover"> <!-- Added hover effect class -->
+                        <div class="card raise-on-hover">
                             <div class="card-content has-text-centered">
                                 <div class="feature-icon-wrapper mb-4">
-                                    <span class="feature-icon icon is-large has-text-primary">⭐</span> <!-- Using Bulma icon class -->
+                                    <span class="feature-icon icon is-large has-text-primary"><i class="fas fa-star"></i></span> <!-- Using FA icon -->
                                 </div>
                                 <h3 class="title is-4 mb-2">Handpicked Stays</h3>
-                                <p class="subtitle is-6">Verified quality & comfort for a worry-free stay.</p>
+                                <p class="subtitle is-6 feature-subtitle">Verified quality & comfort for a worry-free stay.</p> <!-- Added class -->
                             </div>
                         </div>
                     </div>
@@ -103,10 +94,10 @@
                         <div class="card raise-on-hover">
                             <div class="card-content has-text-centered">
                                 <div class="feature-icon-wrapper mb-4">
-                                     <span class="feature-icon icon is-large has-text-primary">💰</span>
+                                     <span class="feature-icon icon is-large has-text-primary"><i class="fas fa-tags"></i></span> <!-- Changed Icon -->
                                 </div>
                                 <h3 class="title is-4 mb-2">Affordable Prices</h3>
-                                <p class="subtitle is-6">Get the best value without compromising on experience.</p>
+                                <p class="subtitle is-6 feature-subtitle">Get the best value without compromising on experience.</p>
                             </div>
                         </div>
                     </div>
@@ -115,10 +106,10 @@
                         <div class="card raise-on-hover">
                             <div class="card-content has-text-centered">
                                <div class="feature-icon-wrapper mb-4">
-                                     <span class="feature-icon icon is-large has-text-primary">🤝</span>
+                                     <span class="feature-icon icon is-large has-text-primary"><i class="fas fa-handshake"></i></span> <!-- Changed Icon -->
                                 </div>
                                 <h3 class="title is-4 mb-2">Local Hosts</h3>
-                                <p class="subtitle is-6">Connect with friendly hosts for an authentic experience.</p>
+                                <p class="subtitle is-6 feature-subtitle">Connect with friendly hosts for an authentic experience.</p>
                             </div>
                         </div>
                     </div>
@@ -127,10 +118,10 @@
                         <div class="card raise-on-hover">
                             <div class="card-content has-text-centered">
                                 <div class="feature-icon-wrapper mb-4">
-                                     <span class="feature-icon icon is-large has-text-primary">🔒</span>
+                                     <span class="feature-icon icon is-large has-text-primary"><i class="fas fa-shield-alt"></i></span> <!-- Changed Icon -->
                                 </div>
                                 <h3 class="title is-4 mb-2">Secure Booking</h3>
-                                <p class="subtitle is-6">Easy, safe, and reliable online booking process.</p>
+                                <p class="subtitle is-6 feature-subtitle">Easy, safe, and reliable online booking process.</p>
                             </div>
                         </div>
                     </div>
@@ -139,22 +130,22 @@
         </section>
 
          <!-- Destinations Section -->
-         <section id="destinations" class="section destinations-section has-background-light"> <!-- Light background -->
+         <section id="destinations" class="section destinations-section has-background-light">
             <div class="container">
                 <h2 class="title is-2 has-text-centered section-title anim-fade-up">Popular Destinations</h2>
                 <div class="columns is-multiline is-centered destination-list">
-                    <!-- Destination Card Structure (Repeat) - Added Placeholder Images -->
+                    <!-- Destination Card Structure (Repeat) -->
                     <article class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
-                        <div class="card raise-on-hover"> <!-- Added hover effect -->
+                        <div class="card raise-on-hover">
                             <div class="card-image">
                                 <figure class="image is-4by3 dest-image-placeholder">
-                                    <img src="https://source.unsplash.com/400x300/?delhi,india" loading="lazy" alt="Homestays in New Delhi"> <!-- Unsplash Placeholder -->
+                                    <img src="https://source.unsplash.com/400x300/?delhi,india" loading="lazy" alt="Homestays in New Delhi">
                                 </figure>
                             </div>
                             <div class="card-content">
-                                <h3 class="title is-5 mb-1">New Delhi</h3> <!-- Smaller title -->
-                                <p class="destination-location subtitle is-7 has-text-grey">Delhi • 4688 Properties</p> <!-- Combined info -->
-                                <a href="#" class="button is-primary is-outlined is-small is-fullwidth mt-3 dest-link">Explore</a> <!-- Changed button -->
+                                <h3 class="title is-5 mb-1 destination-title">New Delhi</h3> <!-- Added Class -->
+                                <p class="destination-location subtitle is-7 has-text-grey">Delhi • 4688 Properties</p>
+                                <a href="#" class="button is-primary is-outlined is-small is-fullwidth mt-3 dest-link">Explore</a>
                             </div>
                         </div>
                     </article>
@@ -167,7 +158,7 @@
                                 </figure>
                             </div>
                            <div class="card-content">
-                                <h3 class="title is-5 mb-1">Mumbai</h3>
+                                <h3 class="title is-5 mb-1 destination-title">Mumbai</h3>
                                 <p class="destination-location subtitle is-7 has-text-grey">Maharashtra • 1766 Properties</p>
                                 <a href="#" class="button is-primary is-outlined is-small is-fullwidth mt-3 dest-link">Explore</a>
                             </div>
@@ -182,7 +173,7 @@
                                 </figure>
                             </div>
                             <div class="card-content">
-                                <h3 class="title is-5 mb-1">Goa</h3>
+                                <h3 class="title is-5 mb-1 destination-title">Goa</h3>
                                 <p class="destination-location subtitle is-7 has-text-grey">Goa • 4728 Properties</p>
                                 <a href="#" class="button is-primary is-outlined is-small is-fullwidth mt-3 dest-link">Explore</a>
                             </div>
@@ -197,7 +188,7 @@
                                 </figure>
                             </div>
                             <div class="card-content">
-                                <h3 class="title is-5 mb-1">Bengaluru</h3>
+                                <h3 class="title is-5 mb-1 destination-title">Bengaluru</h3>
                                 <p class="destination-location subtitle is-7 has-text-grey">Karnataka • 3106 Properties</p>
                                 <a href="#" class="button is-primary is-outlined is-small is-fullwidth mt-3 dest-link">Explore</a>
                             </div>
@@ -205,14 +196,14 @@
                     </article>
                     <!-- Add more destinations similarly -->
                 </div>
-                <div class="has-text-centered mt-5 pt-3"> <!-- Added padding top -->
+                <div class="has-text-centered mt-5 pt-3">
                     <a href="#" class="button is-link is-medium">View All Destinations</a>
                 </div>
             </div>
         </section>
 
          <!-- Contact Section -->
-         <section id="contact" class="section contact-section"> <!-- Removed background class, default white -->
+         <section id="contact" class="section contact-section">
              <div class="container">
                  <div class="columns is-vcentered">
                      <!-- Contact Information -->
@@ -222,27 +213,30 @@
                         <div class="content contact-details mt-5">
                             <p class="mb-4">
                                 <span class="icon-text">
-                                    <span class="icon has-text-primary"><i class="fas fa-envelope"></i></span> <!-- Requires FA -->
-                                    <a href="mailto:hello@easehomestays.com">hello@easehomestays.com</a>
+                                    <span class="icon has-text-primary"><i class="fas fa-envelope"></i></span>
+                                    {/* <!-- === UPDATED EMAIL === --> */}
+                                    <a href="mailto:kunalkrmunda@gmail.com">kunalkrmunda@gmail.com</a>
                                 </span>
                             </p>
                             <p class="mb-4">
                                 <span class="icon-text">
-                                    <span class="icon has-text-primary"><i class="fas fa-phone"></i></span> <!-- Requires FA -->
-                                    <a href="tel:+1234567890">+1 (234) 567-890</a>
+                                    <span class="icon has-text-primary"><i class="fas fa-phone"></i></span>
+                                    {/* <!-- === UPDATED PHONE === --> */}
+                                    <a href="tel:+916200260801">+91 6200260801</a>
                                 </span>
                              </p>
                             <p>
                                 <span class="icon-text">
-                                    <span class="icon has-text-primary"><i class="fas fa-map-marker-alt"></i></span> <!-- Requires FA -->
-                                    <span>123 Ease St, Comfort City</span>
+                                    <span class="icon has-text-primary"><i class="fas fa-map-marker-alt"></i></span>
+                                    {/* <!-- === UPDATED ADDRESS === --> */}
+                                    <span>Bangalore, India</span>
                                 </span>
                             </p>
                         </div>
                     </div>
                     <!-- Contact Form -->
                     <div class="column is-half contact-form anim-fade-right">
-                         <div class="box contact-form-box"> <!-- Added box for visual separation -->
+                         <div class="box contact-form-box">
                             <form id="ease-contact-form">
                                 <div class="field">
                                     <label class="label is-small" for="contact-name">Name</label>

@@ -50,11 +50,11 @@ body {
 
 /* --- Typography --- */
 .title { font-weight: 600; color: var(--ease-text); }
-.subtitle { color: var(--ease-text-light); font-weight: 400; }
+.subtitle { color: var(--ease-text-light); font-weight: 400; line-height: 1.5; /* Add line-height for subtitles */}
 .title.is-1 { font-size: 3rem; line-height: 1.1; }
 .title.is-2 { font-size: 2.25rem; }
 .title.is-4 { font-size: 1.25rem; }
-.title.is-5 { font-size: 1.1rem; font-weight: 600; } /* Make card titles slightly bolder */
+.title.is-5 { font-size: 1.1rem; font-weight: 600; }
 .subtitle.is-6 { font-size: 0.9rem; }
 .subtitle.is-7 { font-size: 0.8rem; }
 
@@ -94,21 +94,35 @@ a:hover { color: var(--ease-primary-dark); }
 
 /* --- General Section Styling --- */
 .section { padding: var(--spacing-xxxl) var(--spacing-lg); }
-.section-title { padding-bottom: var(--spacing-sm); margin-bottom: var(--spacing-xxl) !important; font-weight: 700; }
-.section-title::after { display: none; } /* Removed underline for cleaner look */
+.section-title { padding-bottom: var(--spacing-sm); margin-bottom: var(--spacing-xxxl) !important; /* Increased margin */ font-weight: 700; }
+.section-title::after { display: none; }
 /* Add subtle top border to sections on light bg */
 .destinations-section, .contact-section:not(.has-background-light) { border-top: 1px solid var(--ease-border); }
-.features-section { background-color: var(--ease-background); } /* Keep features white */
+.features-section { background-color: var(--ease-background); }
 .destinations-section { background-color: var(--ease-light-bg); }
 
 /* --- Features Section --- */
 .feature-list { gap: var(--spacing-lg) 0; }
-.feature-item .card { border: none; background-color: transparent; box-shadow: none; transition: transform var(--transition-std); padding: var(--spacing-sm); }
-.feature-icon { font-size: 2rem !important; /* Smaller, cleaner icon */ line-height: 1; }
-.feature-icon-wrapper { transition: transform var(--transition-std); }
+.feature-item .card { border: none; background-color: transparent; box-shadow: none; transition: transform var(--transition-std); padding: var(--spacing-sm); height: 100%; /* Ensure cards have height */}
+.feature-item .card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content top */
+    height: 100%;
+}
+.feature-icon { font-size: 2rem !important; line-height: 1; }
+.feature-icon-wrapper { transition: transform var(--transition-std); min-height: 3rem; /* Ensure space for icon */}
 .feature-item .card:hover .feature-icon-wrapper { transform: scale(1.1) rotate(-5deg); }
-#features .title.is-4 { font-weight: 600; }
-#features .subtitle.is-6 { line-height: 1.5; color: var(--ease-text-light); }
+#features .title.is-4 { font-weight: 600; margin-bottom: var(--spacing-sm) !important; }
+/* === FIX for Feature subtitle === */
+.feature-subtitle {
+    line-height: 1.5;
+    color: var(--ease-text-light);
+    flex-grow: 1; /* Allow subtitle to take space if needed */
+    word-break: break-word; /* Break long words if necessary */
+    hyphens: auto; /* Add hyphens */
+    min-height: 4.5em; /* Ensure roughly 3 lines of space minimum */
+}
 
 /* --- Card Hover Effect --- */
 .raise-on-hover { transition: transform var(--transition-std), box-shadow var(--transition-std); }
@@ -116,20 +130,44 @@ a:hover { color: var(--ease-primary-dark); }
 
 /* --- Destinations Section --- */
 .destination-list { gap: var(--spacing-lg) 0; }
-.destination-card .card { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--ease-border); background-color: white; box-shadow: var(--shadow-sm); }
+.destination-card .card { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--ease-border); background-color: white; box-shadow: var(--shadow-sm); height: 100%; } /* Add height */
+.destination-card .card-content {
+    padding: var(--spacing-md); /* Adjusted padding */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Ensure content takes full height */
+}
 .dest-image-placeholder { height: 180px; background-color: #eee; }
 .dest-image-placeholder img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition-med); }
 .destination-card .card:hover img { transform: scale(1.08); }
-.destination-card .card-content { padding: var(--spacing-md); }
-.destination-location { text-transform: uppercase; letter-spacing: 0.5px; }
-.dest-link { border-radius: var(--radius-sm); font-weight: 500; transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast); }
+/* === FIX for Destination title/location === */
+.destination-title {
+    font-weight: 600 !important; /* Ensure weight */
+    margin-bottom: var(--spacing-xs) !important;
+    line-height: 1.3; /* Adjust line height */
+    word-break: break-word;
+}
+.destination-location {
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.4; /* Adjust line height */
+    margin-bottom: var(--spacing-md); /* Add margin below location */
+}
+.dest-link {
+    margin-top: auto; /* Push button to bottom */
+    align-self: flex-start;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
 .dest-link:hover { background-color: var(--ease-primary); color: white !important; border-color: var(--ease-primary); }
+
 
 /* --- Contact Section --- */
 .contact-info .section-title { text-align: left; }
 .contact-details { margin-top: var(--spacing-xl) !important; }
 .contact-details p { margin-bottom: var(--spacing-lg) !important; }
-.contact-details .icon { vertical-align: middle; } /* Align icon better */
+.contact-details .icon { vertical-align: middle; width: 1.5em; /* Align icons */ text-align: center; }
 .contact-details a:hover { color: var(--ease-primary-dark); }
 .contact-form-box { background-color: white; border-radius: var(--radius-md); box-shadow: var(--shadow-md); padding: var(--spacing-xl); }
 .contact-form .label { font-weight: 500; color: var(--ease-text-light); margin-bottom: var(--spacing-sm); }
@@ -146,7 +184,7 @@ a:hover { color: var(--ease-primary-dark); }
 .site-footer a { color: hsl(210, 15%, 70%); font-size: 0.9rem; }
 .site-footer a:hover { color: hsl(0, 0%, 100%); }
 .footer-hr { background-color: hsl(210, 10%, 30%); height: 1px; margin: var(--spacing-xl) 0; }
-.social-links a { color: hsl(210, 15%, 70%); transition: color var(--transition-fast); }
+.social-links a { color: hsl(210, 15%, 70%); transition: color var(--transition-fast); margin: 0 var(--spacing-sm);}
 .social-links a:hover { color: white !important; }
 
 /* --- Animation Base Classes --- */

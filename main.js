@@ -26,11 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const setupNavbarScroll = () => {
         const navbar = select('#main-navbar');
         if (!navbar) return;
-        // Use ScrollTrigger to add/remove class based on scroll position
         ScrollTrigger.create({
-            start: 50, // Start adding class after scrolling 50px
+            start: 50,
             end: 99999,
-            // markers: true, // for debugging
             onUpdate: self => {
                 if (self.isActive && !navbar.classList.contains('is-scrolled')) {
                     navbar.classList.add('is-scrolled');
@@ -40,8 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     navbar.classList.add('is-transparent-navbar');
                 }
             },
-            // Use toggleClass for simpler fade-in/out if preferred (no blur needed)
-            // toggleClass: { className: 'is-scrolled', targets: navbar }
         });
     };
 
