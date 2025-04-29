@@ -1,15 +1,10 @@
-// Ease Website - main.js - Reverted State (No Dynamic Loading)
-
 gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded. Initializing static animations...');
 
-    // --- Helper Functions ---
     const select = (selector) => document.querySelector(selector);
     const selectAll = (selector) => document.querySelectorAll(selector);
 
-    // --- Navbar Burger Toggle ---
     const setupNavbarToggle = () => {
         const navbarBurgers = Array.from(selectAll('.navbar-burger'));
         navbarBurgers.forEach(el => {
@@ -22,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // --- Navbar Scroll Effect ---
     const setupNavbarScroll = () => {
         const navbar = select('#main-navbar');
         if (!navbar) return;
@@ -41,8 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-
-    // --- Smooth Scrolling ---
     const setupSmoothScroll = () => {
         selectAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -61,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         navbarBurger?.classList.remove('is-active');
                     }
 
-                    let targetPosition = targetElement.offsetTop - navbarHeight - 10; // Add small offset
+                    let targetPosition = targetElement.offsetTop - navbarHeight - 10;
                     if (href === '#hero') targetPosition = 0;
 
                     window.scrollTo({ top: targetPosition, behavior: 'smooth' });
@@ -70,79 +62,120 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // --- GSAP Animations ---
+    const setupBookingModal = () => {
+        const modal = select('#booking-modal');
+        const modalCityDisplay = select('#modal-city-display');
+        const openModalButtons = selectAll('.open-booking-modal');
+        const closeModalElements = selectAll('.modal-background, .modal-close');
+        const checkinDateInput = select('#checkin-date');
+        const checkoutDateInput = select('#checkout-date');
+        const dateError = select('#date-error');
+        const bookingForm = select('#modal-booking-form');
+        const htmlElement = document.documentElement;
+
+        const openModal = (city) => {
+            if (!modal || !modalCityDisplay) return;
+            modalCityDisplay.textContent = `Selected City: ${city}`;
+            modal.classList.add('is-active');
+            htmlElement.classList.add('is-clipped');
+        };
+
+        const closeModal = () => {
+            if (!modal) return;
+            modal.classList.remove('is-active');
+            htmlElement.classList.remove('is-clipped');
+            if(dateError) dateError.style.display = 'none';
+        };
+
+        openModalButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const city = button.dataset.city;
+                if (city) {
+                    openModal(city);
+                } else {
+                    console.error("Button is missing data-city attribute");
+                }
+            });
+        });
+
+        closeModalElements.forEach(el => {
+            el.addEventListener('click', closeModal);
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+
+         const validateDates = () => {
+             if (!checkinDateInput || !checkoutDateInput || !dateError) return true;
+             const checkin = new Date(checkinDateInput.value);
+             const checkout = new Date(checkoutDateInput.value);
+
+             if (checkinDateInput.value && checkoutDateInput.value && checkout <= checkin) {
+                 dateError.style.display = 'block';
+                 return false;
+             } else {
+                 dateError.style.display = 'none';
+                 return true;
+             }
+         };
+
+         checkinDateInput?.addEventListener('change', validateDates);
+         checkoutDateInput?.addEventListener('change', validateDates);
+
+        if (bookingForm) {
+            bookingForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (!validateDates()) {
+                    console.log("Date validation failed");
+                    return;
+                }
+
+                const formData = new FormData(bookingForm);
+                const city = modalCityDisplay.textContent.replace('Selected City: ', '');
+                const checkin = formData.get('checkin');
+                const checkout = formData.get('checkout');
+                const rooms = formData.get('rooms');
+                const guests = formData.get('guests');
+
+                console.log('Searching for stays:', { city, checkin, checkout, rooms, guests });
+                alert(`Searching stays in ${city} from ${checkin} to ${checkout} for ${guests} guest(s) in ${rooms} room(s).\n(Backend integration needed!)`);
+
+            });
+        }
+    };
+
+
     const initAnimations = () => {
         const defaultEase = "power3.out";
         const defaultDuration = 0.8;
 
-        // Hero Entrance Animation (Staggered lines/elements)
         gsap.utils.toArray('.hero-content .anim-reveal').forEach((el, index) => {
-            gsap.fromTo(el,
-                { opacity: 0, y: 40 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: defaultDuration,
-                    ease: defaultEase,
-                    delay: 0.2 + index * 0.15
-                }
-            );
+            gsap.fromTo(el, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: defaultDuration, ease: defaultEase, delay: 0.2 + index * 0.15 });
         });
 
-         // Hero Background Elements Subtle Animation
          gsap.utils.toArray('.hero-bg-el').forEach((el, index) => {
-             gsap.fromTo(el,
-                { y: gsap.utils.random(-20, 20), x: gsap.utils.random(-20, 20) },
-                {
-                    y: `random(-40, 40)`,
-                    x: `random(-40, 40)`,
-                    duration: gsap.utils.random(8, 12),
-                    ease: "sine.inOut",
-                    repeat: -1,
-                    yoyo: true,
-                    delay: index * 1.5
-                });
+             gsap.fromTo(el, { y: gsap.utils.random(-20, 20), x: gsap.utils.random(-20, 20) }, { y: `random(-40, 40)`, x: `random(-40, 40)`, duration: gsap.utils.random(8, 12), ease: "sine.inOut", repeat: -1, yoyo: true, delay: index * 1.5 });
          });
 
-        // General Scroll Animation Function
         const animateOnScroll = (selector, triggerEl = null, fromState = { opacity: 0, y: 50 }, staggerVal = 0.1) => {
             const elements = gsap.utils.toArray(selector);
             if (elements.length === 0) return;
-
-            // --- NOTE: No ScrollTrigger.refresh() needed here for static content ---
-
-            gsap.fromTo(elements, fromState, {
-                opacity: 1, y: 0, x: 0,
-                duration: defaultDuration,
-                ease: defaultEase,
-                stagger: staggerVal,
-                scrollTrigger: {
-                    trigger: triggerEl || elements[0].parentNode,
-                    start: "top 85%",
-                    end: "bottom top",
-                    toggleActions: "play none none none",
-                    // markers: true,
-                }
+            gsap.fromTo(elements, fromState, { opacity: 1, y: 0, x: 0, duration: defaultDuration, ease: defaultEase, stagger: staggerVal,
+                scrollTrigger: { trigger: triggerEl || elements[0].parentNode, start: "top 85%", end: "bottom top", toggleActions: "play none none none" }
             });
         };
 
-        // Animate Section Titles
         animateOnScroll('.section-title.anim-fade-up', null, { opacity: 0, y: 40 }, 0);
-
-        // Animate Feature Items
         animateOnScroll('#features .feature-item.anim-fade-up', '#features .feature-list', { opacity: 0, y: 40 }, 0.1);
-
-        // Animate Destination Cards (Hardcoded ones)
         animateOnScroll('#destinations .destination-card.anim-fade-up', '#destinations .destination-list', { opacity: 0, y: 40 }, 0.1);
-
-        // Animate Contact Section Sides
         animateOnScroll('.contact-info.anim-fade-left', '#contact .columns', { opacity: 0, x: -40 }, 0);
-        gsap.delayedCall(0.1, () => {
-             animateOnScroll('.contact-form.anim-fade-right', '#contact .columns', { opacity: 0, x: 40 }, 0);
-        });
+        gsap.delayedCall(0.1, () => { animateOnScroll('.contact-form.anim-fade-right', '#contact .columns', { opacity: 0, x: 40 }, 0); });
     };
 
-     // --- Button Click Feedback ---
      const setupButtonClickFeedback = () => {
         selectAll('.button:not(.contact-button)').forEach(button => {
             button.addEventListener('mousedown', () => gsap.to(button, { scale: 0.96, duration: 0.1 }));
@@ -173,12 +206,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
      };
 
-    // --- Initialization ---
     setupNavbarToggle();
     setupNavbarScroll();
     setupSmoothScroll();
+    setupBookingModal();
     initAnimations();
     setupButtonClickFeedback();
 
-    console.log('Ease website reverted state initialized!');
+    console.log('Ease website initialized with booking modal!');
 });

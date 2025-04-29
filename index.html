@@ -13,7 +13,6 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -129,11 +128,11 @@
                             <div class="card-content">
                                 <h3 class="title is-5 mb-1 destination-title">New Delhi</h3>
                                 <p class="destination-location subtitle is-7 has-text-grey mb-3">Delhi • 4688 Properties</p>
-                                <a href="#" class="button is-primary is-outlined is-small is-fullwidth dest-link">Explore</a>
+                                <button class="button is-primary is-outlined is-small is-fullwidth dest-link open-booking-modal" data-city="New Delhi">Explore</button>
                             </div>
                         </div>
                     </article>
-                    <article class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
+                     <article class="column is-one-quarter-desktop is-one-third-tablet destination-card anim-fade-up">
                         <div class="card raise-on-hover">
                             <div class="card-image">
                                 <figure class="image is-4by3 dest-image-placeholder">
@@ -143,7 +142,7 @@
                            <div class="card-content">
                                 <h3 class="title is-5 mb-1 destination-title">Mumbai</h3>
                                 <p class="destination-location subtitle is-7 has-text-grey mb-3">Maharashtra • 1766 Properties</p>
-                                <a href="#" class="button is-primary is-outlined is-small is-fullwidth dest-link">Explore</a>
+                                <button class="button is-primary is-outlined is-small is-fullwidth dest-link open-booking-modal" data-city="Mumbai">Explore</button>
                             </div>
                         </div>
                     </article>
@@ -157,7 +156,7 @@
                             <div class="card-content">
                                 <h3 class="title is-5 mb-1 destination-title">Goa</h3>
                                 <p class="destination-location subtitle is-7 has-text-grey mb-3">Goa • 4728 Properties</p>
-                                <a href="#" class="button is-primary is-outlined is-small is-fullwidth dest-link">Explore</a>
+                                <button class="button is-primary is-outlined is-small is-fullwidth dest-link open-booking-modal" data-city="Goa">Explore</button>
                             </div>
                         </div>
                     </article>
@@ -171,7 +170,7 @@
                             <div class="card-content">
                                 <h3 class="title is-5 mb-1 destination-title">Bengaluru</h3>
                                 <p class="destination-location subtitle is-7 has-text-grey mb-3">Karnataka • 3106 Properties</p>
-                                <a href="#" class="button is-primary is-outlined is-small is-fullwidth dest-link">Explore</a>
+                                <button class="button is-primary is-outlined is-small is-fullwidth dest-link open-booking-modal" data-city="Bengaluru">Explore</button>
                             </div>
                         </div>
                     </article>
@@ -242,6 +241,78 @@
              </div>
          </section>
     </main>
+
+     <div class="modal" id="booking-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="box booking-form-modal">
+                <h3 class="title is-4 has-text-centered">Find Your Stay</h3>
+                <p class="has-text-centered mb-4" id="modal-city-display">City: </p>
+
+                <form id="modal-booking-form">
+
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+                            <div class="field">
+                                <label class="label" for="checkin-date">Check-in</label>
+                                <div class="control">
+                                    <input class="input" type="date" id="checkin-date" name="checkin" required>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label" for="checkout-date">Check-out</label>
+                                <div class="control">
+                                    <input class="input" type="date" id="checkout-date" name="checkout" required>
+                                </div>
+                                <p class="help is-danger" id="date-error" style="display: none;">Check-out date must be after check-in date.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+                            <div class="field">
+                                <label class="label" for="num-rooms">Rooms</label>
+                                <div class="control is-expanded">
+                                    <div class="select is-fullwidth">
+                                        <select id="num-rooms" name="rooms">
+                                            <option value="1" selected>1 Room</option>
+                                            <option value="2">2 Rooms</option>
+                                            <option value="3">3 Rooms</option>
+                                            <option value="4">4 Rooms</option>
+                                            <option value="5">5+ Rooms</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="field">
+                                <label class="label" for="num-guests">Guests</label>
+                                <div class="control is-expanded">
+                                    <div class="select is-fullwidth">
+                                        <select id="num-guests" name="guests">
+                                            <option value="1">1 Guest</option>
+                                            <option value="2" selected>2 Guests</option>
+                                            <option value="3">3 Guests</option>
+                                            <option value="4">4 Guests</option>
+                                            <option value="5">5 Guests</option>
+                                             <option value="6">6+ Guests</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="field mt-5">
+                        <div class="control">
+                            <button type="submit" class="button is-primary is-fullwidth is-medium">Search Homestays</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
 
     <footer class="footer site-footer">
         <div class="container">
