@@ -4,15 +4,14 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    scroll-padding-top: 5rem; /* Nav height + buffer */
-    @apply bg-base-100 text-base-content antialiased cursor-none; /* Hide default cursor */
+    scroll-padding-top: 5rem;
+    @apply bg-base-100 text-base-content antialiased cursor-none;
 }
 
 html {
     scroll-behavior: smooth;
 }
 
-/* Custom Cursor Styles */
 .custom-cursor, .custom-cursor-dot {
     position: fixed;
     top: 0;
@@ -20,26 +19,25 @@ html {
     pointer-events: none;
     z-index: 9999;
     border-radius: 50%;
-    mix-blend-mode: difference; /* Cool blend effect */
+    mix-blend-mode: difference;
     transition: transform 0.2s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s ease;
 }
 .custom-cursor {
     width: 30px;
     height: 30px;
-    border: 1px solid white; /* Use white for difference blend */
+    border: 1px solid white;
     transform: translate(-50%, -50%);
 }
 .custom-cursor-dot {
     width: 6px;
     height: 6px;
-    background-color: white; /* Use white for difference blend */
-     transform: translate(-50%, -50%) scale(0); /* Initially hidden */
+    background-color: white;
+     transform: translate(-50%, -50%) scale(0);
      transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
 }
 body:hover .custom-cursor-dot {
-     transform: translate(-50%, -50%) scale(1); /* Show dot on hover */
+     transform: translate(-50%, -50%) scale(1);
 }
-/* Cursor hover effect */
 .custom-cursor.hover-effect {
     transform: translate(-50%, -50%) scale(1.5);
     border-width: 1px;
@@ -47,55 +45,36 @@ body:hover .custom-cursor-dot {
     background-color: rgba(255, 255, 255, 0.1);
 }
 .custom-cursor-dot.hover-effect {
-     transform: translate(-50%, -50%) scale(0); /* Hide dot during hover effect */
+     transform: translate(-50%, -50%) scale(0);
 }
 
-/* Magnetic effect class (JS will toggle this) */
 .magnetic-link {
-    display: inline-block; /* Needed for transform */
-    /* Transition added via JS for magnetic effect */
+    display: inline-block;
 }
 
-
-/* Navbar Styles */
 .nav-link { @apply relative px-3 py-2 transition-colors duration-200 hover:text-primary; }
 .nav-link::after { content: ''; @apply absolute bottom-0 left-0 block w-0 h-0.5 bg-primary transition-all duration-300 ease-out group-hover:w-full; }
-.nav-link:hover::after, .nav-link:focus::after { @apply w-1/2; } /* Adjust hover width */
+.nav-link:hover::after, .nav-link:focus::after { @apply w-1/2; }
 
-/* Hero Styles */
 .text-shadow-custom { text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); }
-.hero-bg-elements { /* ... existing styles */ }
-.hero-bg-el { /* ... existing styles */ }
-@keyframes rotate-scale { /* ... existing styles */ }
+.hero-bg-elements { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.hero-bg-el { position: absolute; border-radius: 9999px; animation: rotate-scale 30s infinite linear alternate; @apply bg-white/10; }
+.hero-bg-el.el-1 { @apply w-48 h-48 md:w-72 md:h-72 top-[-50px] left-[-100px]; animation-duration: 40s; }
+.hero-bg-el.el-2 { @apply w-64 h-64 md:w-96 md:h-96 bottom-[-150px] right-[-150px]; animation-duration: 35s; animation-delay: -5s; }
+.hero-bg-el.el-3 { @apply w-32 h-32 md:w-48 md:h-48 top-[30%] right-[15%]; animation-duration: 25s; animation-delay: -10s;}
+@keyframes rotate-scale { from { transform: rotate(0) scale(0.8); } to { transform: rotate(360deg) scale(1.2); } }
 
-/* Section Title Base */
-.section-title .char, .section-title .word, .section-title .line {
-    display: inline-block;
-    opacity: 0; /* Initially hidden for GSAP */
-    transform: translateY(100%);
-    will-change: transform, opacity;
-}
+.section-title .char, .section-title .word, .section-title .line { display: inline-block; opacity: 0; transform: translateY(100%); will-change: transform, opacity; }
 
-/* Features Card Adjustments */
 .feature-icon-wrapper { @apply transition-transform duration-300 ease-in-out; }
-.feature-item:hover .feature-icon-wrapper { @apply scale-110 rotate-[-8deg]; }
-.feature-subtitle { @apply text-sm leading-relaxed; } /* Slightly smaller, relaxed */
+.feature-item:hover .feature-icon-wrapper { @apply scale-110 -rotate-6; }
+.feature-subtitle { @apply text-sm leading-relaxed; }
 
-/* Destination Card Adjustments */
-.img-reveal {
-    opacity: 0; /* Hide images initially for reveal effect */
-    scale: 1.1;
-    will-change: transform, opacity;
-}
-.mask {
-    -webkit-mask-size: cover;
-    mask-size: cover;
-}
+.img-reveal { opacity: 0; scale: 1.1; will-change: transform, opacity; }
+.mask { -webkit-mask-size: cover; mask-size: cover; }
 
-/* Contact Form Focus */
 .input:focus, .textarea:focus, .select:focus {
-    outline: 2px solid transparent;
-    outline-offset: 2px;
+    outline: 2px solid transparent; outline-offset: 2px;
     --tw-ring-color: theme('colors.primary / 50%');
     --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
     --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -103,19 +82,24 @@ body:hover .custom-cursor-dot {
     border-color: theme('colors.primary');
 }
 
-/* Footer Styles */
 .footer a.link-hover { @apply transition-colors duration-200; }
 
-/* GSAP Animation Base */
-.anim-fade-up, .anim-fade-left, .anim-fade-right, .anim-reveal, .anim-form-field {
+.anim-fade-up, .anim-fade-left, .anim-fade-right, .anim-reveal, .anim-form-field, .anim-scroll-reveal {
     opacity: 0;
     will-change: transform, opacity;
 }
-.anim-float {
-    animation: float 6s infinite ease-in-out alternate;
-}
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); }
-    100% { transform: translateY(0px); }
-}
+.anim-float { animation: float 6s infinite ease-in-out alternate; }
+@keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+
+.nav-link-drawer { @apply block w-full text-left px-4 py-2 rounded-md hover:bg-base-300 transition-colors duration-150; }
+
+/* Reduce Card Content Padding */
+.card-body { padding: 1rem; /* Reduced from p-5 */ }
+.feature-item.card { padding: 1rem; /* Reduced from p-6 */ }
+.contact-form-box { padding: 1.5rem; /* Reduced from p-8 lg:p-10 */ }
+
+/* Reduce spacing below titles */
+.section-title { margin-bottom: 3rem !important; /* Reduced from mb-16 */ }
+.feature-title { margin-bottom: 0.5rem !important; /* Reduced from mb-3 */ }
+.destination-title { margin-bottom: 0.25rem !important; /* Reduced from mb-1 */ }
+.destination-location { margin-bottom: 0.75rem !important; /* Reduced from mb-4 */}
