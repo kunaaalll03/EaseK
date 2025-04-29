@@ -1,5 +1,5 @@
 /**
- * Custom Stylesheet for Ease Homestays - Modern Refined Edition V2 (Fixes)
+ * Custom Stylesheet for Ease Homestays - Alignment Fix V4 (Increased Space)
  * ----------------------------------------------------------------------
  */
 
@@ -20,7 +20,7 @@
     --body-font: 'Poppins', sans-serif;
 
     /* Spacing */
-    --spacing-sm: 0.5rem; --spacing-md: 1rem; --spacing-lg: 1.5rem; --spacing-xl: 2rem; --spacing-xxl: 3rem; --spacing-xxxl: 4.5rem;
+    --spacing-xs: 0.25rem; --spacing-sm: 0.5rem; --spacing-md: 1rem; --spacing-lg: 1.5rem; --spacing-xl: 2rem; --spacing-xxl: 3rem; --spacing-xxxl: 4.5rem;
 
     /* Border Radius */
     --radius-sm: 4px; --radius-md: 8px; --radius-lg: 12px; --radius-round: 50px;
@@ -71,11 +71,7 @@ a:hover { color: var(--ease-primary-dark); }
 .navbar-item:hover, .navbar-item:focus, .navbar-item.is-active { background-color: transparent !important; color: var(--ease-primary) !important; }
 
 /* --- Hero Section --- */
-.hero-modern {
-    background: linear-gradient(145deg, var(--ease-primary) 0%, hsl(205, 70%, 65%) 100%);
-    overflow: hidden;
-    position: relative;
-}
+.hero-modern { background: linear-gradient(145deg, var(--ease-primary) 0%, hsl(205, 70%, 65%) 100%); overflow: hidden; position: relative; }
 .hero-tagline { color: rgba(255, 255, 255, 0.8); font-weight: 500; margin-bottom: var(--spacing-sm); }
 #hero .title.is-1 { color: white; font-weight: 700; }
 #hero .subtitle.is-5 { color: rgba(255, 255, 255, 0.9); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-xl); max-width: 600px; margin-left: auto; margin-right: auto; }
@@ -101,10 +97,25 @@ a:hover { color: var(--ease-primary-dark); }
 .feature-item .card { border: none; background-color: transparent; box-shadow: none; transition: transform var(--transition-std); padding: var(--spacing-sm); height: 100%; display: flex; }
 .feature-item .card-content { display: flex; flex-direction: column; justify-content: flex-start; align-items: center; height: 100%; width: 100%; padding: var(--spacing-md); }
 .feature-icon { font-size: 2rem !important; line-height: 1; }
-.feature-icon-wrapper { transition: transform var(--transition-std); min-height: 3rem; }
+.feature-icon-wrapper { transition: transform var(--transition-std); min-height: 3rem; margin-bottom: var(--spacing-sm) !important; /* Reduced space after icon */}
 .feature-item .card:hover .feature-icon-wrapper { transform: scale(1.1) rotate(-5deg); }
-.feature-title { font-weight: 600 !important; line-height: 1.3; margin-bottom: var(--spacing-sm) !important; }
-.feature-subtitle { font-size: 0.85rem; line-height: 1.6; color: var(--ease-text-light); flex-grow: 1; width: 100%; word-wrap: break-word; overflow-wrap: break-word; }
+.feature-title {
+    font-size: 1.15rem;
+    font-weight: 600 !important;
+    line-height: 1.3;
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg) !important; /* === INCREASED SPACE HERE === */
+    word-break: break-word;
+}
+.feature-subtitle {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--ease-text-light);
+    flex-grow: 1;
+    width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
 
 /* --- Card Hover Effect --- */
 .raise-on-hover { transition: transform var(--transition-std), box-shadow var(--transition-std); }
@@ -113,32 +124,36 @@ a:hover { color: var(--ease-primary-dark); }
 /* --- Destinations Section --- */
 .destination-list { gap: var(--spacing-lg) 0; }
 .destination-card .card { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--ease-border); background-color: white; box-shadow: var(--shadow-sm); height: 100%; display: flex; flex-direction: column; }
-.destination-card .card-content { padding: var(--spacing-md); display: flex; flex-direction: column; flex-grow: 1; }
-/* === CSS FIX FOR DESTINATION IMAGE PLACEHOLDER === */
-.dest-image-placeholder {
-    /* Removed fixed height, Bulma's is-4by3 will handle aspect ratio */
-    background-color: #eee;
-    flex-shrink: 0;
-    /* Bulma's .image.is-4by3 gives padding-top: 75% */
-    /* Make sure the figure itself is position relative if needed */
-    position: relative;
-}
-.dest-image-placeholder img {
-    /* Make image absolute to fill the figure controlled by padding */
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Cover the area, crop if needed */
-    transition: transform var(--transition-med);
-}
-/* ============================================ */
+.destination-card .card-content { padding: var(--spacing-lg); display: flex; flex-direction: column; flex-grow: 1; }
+.dest-image-placeholder { background-color: #eee; flex-shrink: 0; position: relative; }
+.dest-image-placeholder img { position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition-med); }
 .destination-card .card:hover img { transform: scale(1.08); }
-.destination-title { font-weight: 600 !important; line-height: 1.3; margin-bottom: var(--spacing-xs) !important; word-wrap: break-word; overflow-wrap: break-word; }
-.destination-location { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.4; color: var(--ease-text-light); margin-bottom: var(--spacing-md); word-wrap: break-word; overflow-wrap: break-word; }
-.dest-link { margin-top: auto; align-self: flex-start; flex-shrink: 0; border-radius: var(--radius-sm); font-weight: 500; transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast); }
+.destination-title {
+    font-weight: 600 !important;
+    line-height: 1.3;
+    margin-bottom: var(--spacing-sm) !important; /* === INCREASED SPACE HERE === */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+.destination-location {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.5; /* Increased line height */
+    color: var(--ease-text-light);
+    margin-bottom: var(--spacing-lg);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    flex-grow: 1;
+}
+.dest-link {
+    margin-top: auto;
+    align-self: flex-start;
+    flex-shrink: 0;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
 .dest-link:hover { background-color: var(--ease-primary); color: white !important; border-color: var(--ease-primary); }
 
 /* --- Contact Section --- */
