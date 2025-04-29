@@ -1,11 +1,10 @@
 /**
- * Custom Stylesheet for Ease Homestays - Modern Refined Edition V2 (Fixes)
- * ----------------------------------------------------------------------
+ * Custom Stylesheet for Ease Homestays - V3 (Booking Feature)
+ * ----------------------------------------------------------
  */
 
 /* --- Variables & Global Styles --- */
 :root {
-    /* Refined Color Palette */
     --ease-primary: hsl(205, 70%, 55%);
     --ease-primary-dark: hsl(205, 70%, 45%);
     --ease-link: var(--ease-primary);
@@ -16,21 +15,16 @@
     --ease-border: hsl(210, 25%, 92%);
     --ease-accent: hsl(35, 90%, 65%);
 
-    /* Fonts */
     --body-font: 'Poppins', sans-serif;
 
-    /* Spacing */
     --spacing-sm: 0.5rem; --spacing-md: 1rem; --spacing-lg: 1.5rem; --spacing-xl: 2rem; --spacing-xxl: 3rem; --spacing-xxxl: 4.5rem;
 
-    /* Border Radius */
     --radius-sm: 4px; --radius-md: 8px; --radius-lg: 12px; --radius-round: 50px;
 
-    /* Transitions */
     --transition-fast: 0.2s ease-out;
     --transition-std: 0.3s ease-out;
     --transition-med: 0.4s ease-out;
 
-    /* Shadows */
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
     --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -53,10 +47,19 @@ body {
 .subtitle { color: var(--ease-text-light); font-weight: 400; line-height: 1.5; }
 .title.is-1 { font-size: 3rem; line-height: 1.1; }
 .title.is-2 { font-size: 2.25rem; }
+.title.is-3 { font-size: 1.75rem; } /* Size for booking title */
 .title.is-4 { font-size: 1.25rem; }
 .title.is-5 { font-size: 1.1rem; font-weight: 600; }
 .subtitle.is-6 { font-size: 0.9rem; }
 .subtitle.is-7 { font-size: 0.8rem; }
+.heading { /* Bulma class for small titles */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--ease-text-light);
+}
+
 
 a { color: var(--ease-link); transition: color var(--transition-fast); }
 a:hover { color: var(--ease-primary-dark); }
@@ -104,11 +107,7 @@ a:hover { color: var(--ease-primary-dark); }
 .feature-icon-wrapper { transition: transform var(--transition-std); min-height: 3rem; }
 .feature-item .card:hover .feature-icon-wrapper { transform: scale(1.1) rotate(-5deg); }
 .feature-title { font-weight: 600 !important; line-height: 1.3; margin-bottom: var(--spacing-sm) !important; }
-.feature-subtitle {
-    font-size: 0.85rem; line-height: 1.6; color: var(--ease-text-light);
-    flex-grow: 1; width: 100%;
-    word-wrap: break-word; overflow-wrap: break-word; /* Better word wrapping */
-}
+.feature-subtitle { font-size: 0.85rem; line-height: 1.6; color: var(--ease-text-light); flex-grow: 1; width: 100%; word-wrap: break-word; overflow-wrap: break-word; }
 
 /* --- Card Hover Effect --- */
 .raise-on-hover { transition: transform var(--transition-std), box-shadow var(--transition-std); }
@@ -116,35 +115,64 @@ a:hover { color: var(--ease-primary-dark); }
 
 /* --- Destinations Section --- */
 .destination-list { gap: var(--spacing-lg) 0; }
-.destination-card .card { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--ease-border); background-color: white; box-shadow: var(--shadow-sm); height: 100%; display: flex; flex-direction: column; }
+.destination-card .card { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--ease-border); background-color: white; box-shadow: var(--shadow-sm); height: 100%; display: flex; flex-direction: column; cursor: pointer; /* Add pointer cursor */}
 .destination-card .card-content { padding: var(--spacing-md); display: flex; flex-direction: column; flex-grow: 1; }
 .dest-image-placeholder { height: 180px; background-color: #eee; flex-shrink: 0; }
 .dest-image-placeholder img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition-med); }
 .destination-card .card:hover img { transform: scale(1.08); }
-.destination-title {
-    font-weight: 600 !important; line-height: 1.3;
-    margin-bottom: var(--spacing-xs) !important;
-    word-wrap: break-word; overflow-wrap: break-word; /* Ensure wrapping */
-}
-.destination-location {
-    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;
-    line-height: 1.4; color: var(--ease-text-light);
-    margin-bottom: var(--spacing-md); /* Ensure space before button */
-    word-wrap: break-word; overflow-wrap: break-word; /* Ensure wrapping */
-}
-.dest-link {
-    margin-top: auto; align-self: flex-start; flex-shrink: 0;
-    border-radius: var(--radius-sm); font-weight: 500;
-    transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
-}
+.destination-title { font-weight: 600 !important; line-height: 1.3; margin-bottom: var(--spacing-xs) !important; word-wrap: break-word; overflow-wrap: break-word; }
+.destination-location { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.4; color: var(--ease-text-light); margin-bottom: var(--spacing-md); word-wrap: break-word; overflow-wrap: break-word; }
+.dest-link { margin-top: auto; align-self: flex-start; flex-shrink: 0; border-radius: var(--radius-sm); font-weight: 500; transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast); }
 .dest-link:hover { background-color: var(--ease-primary); color: white !important; border-color: var(--ease-primary); }
+
+/* --- Booking Section --- */
+.booking-section {
+    padding: var(--spacing-xxl) var(--spacing-lg);
+    background-color: var(--ease-light-bg);
+    border-top: 1px solid var(--ease-border);
+    border-bottom: 1px solid var(--ease-border);
+    /* Style for is-hidden handled by Bulma */
+    /* Add transition for smooth appearance */
+    overflow: hidden;
+    /* max-height: 0; Set initial height for animation */
+    opacity: 0;
+    transition: opacity 0.5s ease-out, max-height 0.5s ease-out;
+}
+.booking-section:not(.is-hidden) {
+    /* max-height: 1000px; /* Set large max-height for animation */
+    opacity: 1;
+}
+.booking-card {
+    background-color: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+#booking-destination-name {
+    font-weight: 600;
+}
+/* Style date inputs to look consistent */
+input[type="date"] {
+    min-height: 2.5em; /* Match Bulma input height */
+    cursor: pointer;
+}
+.booking-section .select select {
+    cursor: pointer;
+}
+#estimated-price {
+    font-weight: 700;
+}
+#proceed-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 
 /* --- Contact Section --- */
 .contact-info .section-title { text-align: left; }
 .contact-details { margin-top: var(--spacing-xl) !important; }
 .contact-details p { margin-bottom: var(--spacing-lg) !important; }
-.contact-details .icon { vertical-align: middle; width: 1.5em; text-align: center; margin-right: var(--spacing-sm); /* Add margin to icon */ }
-.contact-details a { word-wrap: break-word; overflow-wrap: break-word; } /* Allow links to wrap */
+.contact-details .icon { vertical-align: middle; width: 1.5em; text-align: center; margin-right: var(--spacing-sm); }
+.contact-details a { word-wrap: break-word; overflow-wrap: break-word; }
 .contact-details a:hover { color: var(--ease-primary-dark); }
 .contact-form-box { background-color: white; border-radius: var(--radius-md); box-shadow: var(--shadow-md); padding: var(--spacing-xl); }
 .contact-form .label { font-weight: 500; color: var(--ease-text-light); margin-bottom: var(--spacing-sm); }
