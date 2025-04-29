@@ -78,29 +78,27 @@ a:hover { color: var(--ease-primary-dark); }
 
 .feature-list { gap: var(--spacing-lg) 0; }
 .feature-item .card { border: none; background-color: transparent; box-shadow: none; transition: transform var(--transition-std); padding: 0; height: 100%; display: flex; }
-/* === FIX 3: Feature Card Content & Spacing === */
-.feature-item .card-content {
-    display: flex; flex-direction: column; justify-content: flex-start;
-    align-items: center; height: 100%; width: 100%;
-    padding: var(--spacing-sm); /* Reduced padding */
-}
+.feature-item .card-content { display: flex; flex-direction: column; justify-content: flex-start; align-items: center; height: 100%; width: 100%; padding: var(--spacing-sm); }
 .feature-icon { font-size: 2rem !important; line-height: 1; }
-.feature-icon-wrapper { transition: transform var(--transition-std); min-height: 3rem; margin-bottom: var(--spacing-md); }
+.feature-icon-wrapper { transition: transform var(--transition-std); min-height: 3rem; margin-bottom: var(--spacing-lg); /* Increased margin below icon */ }
 .feature-item .card:hover .feature-icon-wrapper { transform: scale(1.1) rotate(-5deg); }
+/* === FIX 4: Feature Title Margin === */
 .feature-title {
-    font-size: 1.15rem; /* Slightly smaller title */
+    font-size: 1.15rem;
     font-weight: 600 !important;
     line-height: 1.3;
-    margin-bottom: 0.8rem !important; /* Specific margin */
+    margin-bottom: 1rem !important; /* Increased margin significantly (16px) */
+    min-height: 2.6em;
     width: 100%;
 }
 .feature-subtitle {
-    font-size: 0.8rem; /* Smaller subtitle */
-    line-height: 1.5; /* Ensure line height */
+    font-size: 0.85rem;
+    line-height: 1.6;
     color: var(--ease-text-light);
     width: 100%;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .raise-on-hover { transition: transform var(--transition-std), box-shadow var(--transition-std); }
@@ -108,37 +106,33 @@ a:hover { color: var(--ease-primary-dark); }
 
 .destination-list { gap: var(--spacing-lg) 0; }
 .destination-card .card { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--ease-border); background-color: white; box-shadow: var(--shadow-sm); height: 100%; display: flex; flex-direction: column; }
-/* === FIX 3: Destination Card Content & Spacing === */
-.destination-card .card-content {
-    padding: var(--spacing-md); /* Adjusted padding */
-    display: flex; flex-direction: column; flex-grow: 1;
-    justify-content: flex-start;
-}
+.destination-card .card-content { padding: var(--spacing-lg); display: flex; flex-direction: column; flex-grow: 1; }
 .dest-image-placeholder { height: 180px; background-color: #eee; flex-shrink: 0; }
 .dest-image-placeholder img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition-med); }
 .destination-card .card:hover img { transform: scale(1.08); }
+/* === FIX 4: Destination Title Margin === */
 .destination-title {
-    font-size: 1rem; /* Smaller title */
+    font-size: 1rem;
     font-weight: 600 !important;
     line-height: 1.3;
-    margin-bottom: 0.4rem !important; /* Specific margin */
+    margin-bottom: 0.75rem !important; /* Increased margin significantly (12px) */
+    min-height: 2.6em;
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
 .destination-location {
-    font-size: 0.75rem; /* Smaller location text */
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    line-height: 1.4;
+    line-height: 1.5; /* Increased line height */
     color: var(--ease-text-light);
-    margin-bottom: var(--spacing-md); /* Ensure enough space */
-    flex-grow: 1; /* Let this push button */
+    margin-bottom: var(--spacing-lg);
+    flex-grow: 1;
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
 .dest-link { margin-top: auto; align-self: flex-start; flex-shrink: 0; border-radius: var(--radius-sm); font-weight: 500; transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast); }
 .dest-link:hover { background-color: var(--ease-primary); color: white !important; border-color: var(--ease-primary); }
-
 
 .contact-info .section-title { text-align: left; }
 .contact-details { margin-top: var(--spacing-xl) !important; }
