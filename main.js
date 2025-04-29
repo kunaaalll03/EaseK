@@ -1,66 +1,110 @@
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded. Initializing Enhanced Tailwind/DaisyUI site...');
+    console.log('DOM loaded. Initializing ADVANCED Tailwind/DaisyUI site...');
 
     const select = (selector) => document.querySelector(selector);
     const selectAll = (selector) => document.querySelectorAll(selector);
+    const lerp = (start, end, amount) => (1 - amount) * start + amount * end; // Linear interpolation
 
+    // --- Custom Cursor ---
+    const cursor = select('.custom-cursor');
+    const cursorDot = select('.custom-cursor-dot');
+    let cursorX = window.innerWidth / 2;
+    let cursorY = window.innerHeight / 2;
+    let targetX = window.innerWidth / 2;
+    let targetY = window.innerHeight / 2;
+    const speed = 0.15; // Smoothing factor
+
+    const updateCursor = () => {
+        cursorX = lerp(cursorX, targetX, speed);
+        cursorY = lerp(cursorY, targetY, speed);
+        if (cursor && cursorDot) {
+            cursor.style.transform = `translate(calc(${cursorX}px - 50%), calc(${cursorY}px - 50%))`;
+            cursorDot.style.transform = `translate(calc(${targetX}px - 50%), calc(${targetY}px - 50%))`; // Dot follows directly
+        }
+        requestAnimationFrame(updateCursor);
+    };
+    window.addEventListener('mousemove', (e) => {
+        targetX = e.clientX;
+        targetY = e.clientY;
+    });
+    requestAnimationFrame(updateCursor); // Start the animation loop
+
+    // Cursor Hover Effects
+    selectAll('a, button, label[for], .magnetic-link').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor?.classList.add('hover-effect');
+            cursorDot?.classList.add('hover-effect');
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor?.classList.remove('hover-effect');
+            cursorDot?.classList.remove('hover-effect');
+        });
+    });
+
+
+    // --- Magnetic Effect on Links/Buttons ---
+    const magneticElements = selectAll('.magnetic-link');
+    magneticElements.forEach(el => {
+        let rect = null;
+        let x = 0, y = 0;
+        let isHovering = false;
+
+        el.addEventListener('mouseenter', () => {
+            rect = el.getBoundingClientRect();
+            isHovering = true;
+            gsap.to(el, { duration: 0.3, scale: 1.05, ease: 'power2.out' }); // Slight scale on hover
+        });
+
+        el.addEventListener('mousemove', (e) => {
+            if (!isHovering || !rect) return;
+            const proximity = 0.5; // How close mouse needs to be (0-1)
+            const strength = 0.3; // How strong the pull is (0-1)
+
+            x = lerp(x, (e.clientX - (rect.left + rect.width / 2)) * strength, proximity);
+            y = lerp(y, (e.clientY - (rect.top + rect.height / 2)) * strength, proximity);
+
+            gsap.to(el, { duration: 0.3, x: x, y: y, ease: 'power2.out' });
+        });
+
+        el.addEventListener('mouseleave', () => {
+            isHovering = false;
+            x = 0; y = 0;
+            gsap.to(el, { duration: 0.5, x: 0, y: 0, scale: 1, ease: 'elastic.out(1, 0.5)' }); // Elastic return
+        });
+    });
+
+    // --- Navbar Logic ---
     const setupNavbarToggle = () => {
         const drawerCheckbox = select('#mobile-drawer');
         const drawerLinks = selectAll('.drawer-side a');
-
-        // Close drawer when a link is clicked
         drawerLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (drawerCheckbox) {
-                    drawerCheckbox.checked = false; // Uncheck to close drawer
-                }
-            });
+            link.addEventListener('click', () => { if (drawerCheckbox) drawerCheckbox.checked = false; });
         });
     };
-
-    const setupNavbarScroll = () => {
-        const navbar = select('#main-navbar');
-        if (!navbar) return;
-
-        ScrollTrigger.create({
-            start: 'top -60', // Trigger slightly after scrolling past top
-            end: 99999,
-            toggleClass: { className: 'navbar-scrolled', targets: navbar }
-        });
-        // We'll use CSS to style the .navbar-scrolled state if needed (e.g., adding bg)
-        // For now, DaisyUI handles the background/blur via navbar classes
-    };
-
 
     const setupSmoothScroll = () => {
-        selectAll('a[href^="#"]').forEach(anchor => {
+         selectAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
                 if (!href || href === '#' || !href.startsWith('#')) return;
-
                 e.preventDefault();
                 const targetElement = select(href);
-                 // Get height from the header container, not the sticky wrapper
                 const navbarHeight = select('#main-navbar > .navbar')?.offsetHeight || 64;
-
                 if (targetElement) {
                     const drawerCheckbox = select('#mobile-drawer');
-                    if(drawerCheckbox && drawerCheckbox.checked) {
-                        drawerCheckbox.checked = false; // Close drawer if open
-                    }
-
-                    let targetPosition = targetElement.offsetTop - navbarHeight - 20; // Increased offset
+                    if(drawerCheckbox && drawerCheckbox.checked) drawerCheckbox.checked = false;
+                    let targetPosition = targetElement.offsetTop - navbarHeight - 20;
                     if (href === '#hero') targetPosition = 0;
-
                     window.scrollTo({ top: targetPosition, behavior: 'smooth' });
                 }
             });
         });
     };
 
-     const setupBookingModal = () => {
+    // --- Booking Modal Logic ---
+    const setupBookingModal = () => {
         const modal = select('#booking-modal');
         const modalCityDisplay = select('#modal-city-display');
         const openModalButtons = selectAll('.open-booking-modal');
@@ -74,89 +118,115 @@ document.addEventListener('DOMContentLoaded', () => {
             modalCityDisplay.textContent = `Selected City: ${city}`;
             modal.showModal();
         };
-
         openModalButtons.forEach(button => {
             button.addEventListener('click', (e) => {
-                e.preventDefault();
-                const city = button.dataset.city;
-                if (city) {
-                    openModal(city);
-                } else {
-                    console.error("Button is missing data-city attribute");
-                }
+                e.preventDefault(); const city = button.dataset.city;
+                if (city) openModal(city);
+                else console.error("Button is missing data-city attribute");
             });
         });
-
-         const validateDates = () => {
-             if (!checkinDateInput || !checkoutDateInput || !dateError) return true;
-             const checkin = new Date(checkinDateInput.value);
-             const checkout = new Date(checkoutDateInput.value);
-
-             if (checkinDateInput.value && checkoutDateInput.value && checkout <= checkin) {
-                 dateError.style.display = 'block';
-                 return false;
-             } else {
-                 dateError.style.display = 'none';
-                 return true;
-             }
-         };
-
-         checkinDateInput?.addEventListener('change', validateDates);
-         checkoutDateInput?.addEventListener('change', validateDates);
-
+        const validateDates = () => {
+            if (!checkinDateInput || !checkoutDateInput || !dateError) return true;
+            const checkin = new Date(checkinDateInput.value); const checkout = new Date(checkoutDateInput.value);
+            const valid = !(checkinDateInput.value && checkoutDateInput.value && checkout <= checkin);
+            dateError.style.display = valid ? 'none' : 'block';
+            return valid;
+        };
+        checkinDateInput?.addEventListener('change', validateDates);
+        checkoutDateInput?.addEventListener('change', validateDates);
         if (bookingForm) {
             bookingForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                if (!validateDates()) return;
-
+                e.preventDefault(); if (!validateDates()) return;
                 const formData = new FormData(bookingForm);
                 const city = modalCityDisplay.textContent.replace('Selected City: ', '');
-                const checkin = formData.get('checkin');
-                const checkout = formData.get('checkout');
-                const rooms = formData.get('rooms');
-                const guests = formData.get('guests');
-
+                const checkin = formData.get('checkin'); const checkout = formData.get('checkout');
+                const rooms = formData.get('rooms'); const guests = formData.get('guests');
                 console.log('Searching for stays:', { city, checkin, checkout, rooms, guests });
-                alert(`Searching stays in ${city} from ${checkin} to ${checkout} for ${guests} guest(s) in ${rooms} room(s).\n(Backend integration needed!)`);
-                 if(modal) modal.close();
+                alert(`Searching stays in ${city} from ${checkin} to ${checkout}.\n(Backend integration needed!)`);
+                if(modal) modal.close();
             });
         }
     };
 
+    // --- GSAP Advanced Animations ---
     const initAnimations = () => {
-        const defaultEase = "power3.out";
-        const defaultDuration = 0.9;
+        const defaultEase = "expo.out"; // Smoother ease
+        const defaultDuration = 1.2;
 
-        gsap.utils.toArray('.hero-content .anim-reveal').forEach((el, index) => {
-             gsap.fromTo(el, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: defaultDuration, ease: defaultEase, delay: 0.3 + index * 0.15 });
+        // Hero Text Reveal (Characters)
+        const heroTitle = select('.hero-title[data-split-chars]');
+        if (heroTitle) {
+            const splitChars = new SplitText(heroTitle, { type: "chars, words" });
+            gsap.set(heroTitle, { perspective: 500 });
+            gsap.from(splitChars.chars, {
+                duration: 0.7, delay: 0.4, scale: 1.8, opacity: 0, rotationX: -100,
+                transformOrigin: "50% 50% -60", ease: "back.out(2)", stagger: 0.03,
+            });
+        }
+        gsap.fromTo('.hero-subtitle.anim-reveal', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: defaultDuration, ease: defaultEase, delay: 1.0 });
+        gsap.fromTo('.hero-button.anim-reveal', { opacity: 0, y: 30, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: defaultDuration, ease: "elastic.out(1, 0.6)", delay: 1.2 });
+
+        // Section Title Reveal (Words)
+        selectAll('.section-title[data-split-words]').forEach(title => {
+            const splitWords = new SplitText(title, { type: "words" });
+            gsap.from(splitWords.words, {
+                opacity: 0, y: 30, duration: 0.8, ease: defaultEase, stagger: 0.08,
+                scrollTrigger: { trigger: title, start: "top 90%", toggleActions: "play none none none" }
+            });
+        });
+        // Section Title Reveal (Lines for Contact)
+         selectAll('.section-title[data-split-lines]').forEach(title => {
+            const splitLines = new SplitText(title, { type: "lines" });
+            gsap.from(splitLines.lines, {
+                opacity: 0, y: 50, rotationX:-30, duration: 0.8, ease: defaultEase, stagger: 0.1,
+                scrollTrigger: { trigger: title, start: "top 90%", toggleActions: "play none none none" }
+            });
         });
 
-         gsap.utils.toArray('.hero-bg-el').forEach((el, index) => {
-             gsap.fromTo(el, { y: gsap.utils.random(-30, 30), x: gsap.utils.random(-30, 30), scale: 0.8 }, { y: `random(-50, 50)`, x: `random(-50, 50)`, scale: 1.1, duration: gsap.utils.random(10, 15), ease: "sine.inOut", repeat: -1, yoyo: true, delay: index * 1.5 });
-         });
 
-        const animateOnScroll = (selector, triggerEl = null, fromState = { opacity: 0, y: 60 }, staggerVal = 0.1) => {
+        // General Scroll Animation Function
+        const animateOnScroll = (selector, triggerEl = null, fromState = { opacity: 0, y: 60 }, staggerVal = 0.1, scrub = false) => {
             const elements = gsap.utils.toArray(selector);
             if (elements.length === 0) return;
-            gsap.fromTo(elements, fromState, { opacity: 1, y: 0, x: 0, duration: defaultDuration, ease: defaultEase, stagger: staggerVal,
-                scrollTrigger: { trigger: triggerEl || elements[0].parentNode, start: "top 88%", end: "bottom top", toggleActions: "play none none none" }
-            });
+            gsap.fromTo(elements, fromState, { opacity: 1, y: 0, x: 0, scale: 1, rotationX: 0, duration: defaultDuration, ease: defaultEase, stagger: staggerVal, scrollTrigger: {
+                trigger: triggerEl || elements[0].parentNode,
+                start: "top 88%", end: "bottom center",
+                toggleActions: scrub ? "play none none none" : "play none none reset", // Reset if not scrubbing
+                scrub: scrub ? 1.5 : false
+            }});
         };
 
-        animateOnScroll('.section-title.anim-fade-up', null, { opacity: 0, y: 40 }, 0);
-        animateOnScroll('.features-section .feature-item.anim-fade-up', '.features-section .feature-list', { opacity: 0, y: 40, scale: 0.95 }, 0.1);
-        animateOnScroll('.destinations-section .destination-card.anim-fade-up', '.destinations-section .destination-list', { opacity: 0, y: 40, scale: 0.98 }, 0.1);
-        animateOnScroll('.contact-info.anim-fade-left', '#contact .grid', { opacity: 0, x: -50 }, 0);
-        gsap.delayedCall(0.15, () => { animateOnScroll('.contact-form.anim-fade-right', '#contact .grid', { opacity: 0, x: 50 }, 0); });
+        // Feature Items (Stagger from center out?)
+        const featureItems = gsap.utils.toArray('.feature-item.anim-fade-up');
+        gsap.fromTo(featureItems, { opacity: 0, y: 50, scale: 0.9 }, {
+            opacity: 1, y: 0, scale: 1, duration: defaultDuration * 0.8, ease: defaultEase,
+            stagger: { amount: 0.4, from: "center" }, // Stagger from center
+            scrollTrigger: { trigger: '.feature-list', start: "top 85%", toggleActions: "play none none reset" }
+        });
+
+        // Destination Cards - Image Reveal Mask
+        selectAll('.img-reveal').forEach(img => {
+            gsap.fromTo(img,
+                { opacity: 0, scale: 1.1, clipPath: 'inset(0% 50% 0% 50%)' }, // Start clipped horizontally
+                { opacity: 1, scale: 1, clipPath: 'inset(0% 0% 0% 0%)', duration: 1.4, ease: 'power4.out', delay: 0.2, // Slight delay after card reveals
+                scrollTrigger: { trigger: img.closest('.destination-card'), start: "top 85%", toggleActions: "play none none reset" }
+            });
+        });
+         // Animate card itself slightly before image reveal
+         animateOnScroll('.destinations-section .destination-card', '.destinations-section .destination-list', { opacity: 0, y: 40 }, 0.1);
+
+        // Contact Section
+        animateOnScroll('.contact-info .anim-fade-up', '.contact-info', { opacity: 0, y: 30 }, 0.15); // Stagger contact details
+        animateOnScroll('.contact-form .anim-form-field', '.contact-form', { opacity: 0, y: 30 }, 0.1); // Stagger form fields
+
     };
 
      const setupButtonClickFeedback = () => {
         selectAll('.btn:not(.contact-button)').forEach(button => {
-             button.addEventListener('mousedown', () => gsap.to(button, { scale: 0.95, duration: 0.1 }));
-             button.addEventListener('mouseup', () => gsap.to(button, { scale: 1, duration: 0.1 }));
-             button.addEventListener('mouseleave', () => gsap.to(button, { scale: 1, duration: 0.1 }));
+            button.addEventListener('mousedown', () => gsap.to(button, { scale: 0.95, duration: 0.1 }));
+            button.addEventListener('mouseup', () => gsap.to(button, { scale: 1, duration: 0.1 }));
+            button.addEventListener('mouseleave', () => gsap.to(button, { scale: 1, duration: 0.1 }));
         });
-
         const contactForm = select('#ease-contact-form');
         if (contactForm) {
             contactForm.addEventListener('submit', (e) => {
@@ -164,18 +234,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const button = contactForm.querySelector('.contact-button');
                 button.disabled = true;
                 button.innerHTML = `<span class="loading loading-spinner loading-sm"></span> Sending...`;
-
                 gsap.to(button, { scale: 0.96, duration: 0.1, onComplete: () => {
                     setTimeout(() => {
                         button.innerHTML = 'Message Sent!';
-                        button.classList.remove('btn-primary');
-                        button.classList.add('btn-success');
+                        button.classList.remove('btn-primary'); button.classList.add('btn-success');
                         gsap.to(button, { scale: 1, duration: 0.2 });
                          setTimeout(() => {
-                            button.disabled = false;
-                            button.innerHTML = 'Send Message';
-                             button.classList.remove('btn-success');
-                             button.classList.add('btn-primary');
+                            button.disabled = false; button.innerHTML = 'Send Message';
+                             button.classList.remove('btn-success'); button.classList.add('btn-primary');
                          }, 3000);
                     }, 800);
                 }});
@@ -184,11 +250,11 @@ document.addEventListener('DOMContentLoaded', () => {
      };
 
     setupNavbarToggle();
-    // setupNavbarScroll(); // Re-enable if needed and styled
+    // setupNavbarScroll(); // Optional: Refine later if needed
     setupSmoothScroll();
     setupBookingModal();
     initAnimations();
     setupButtonClickFeedback();
 
-    console.log('Ease website Enhanced Tailwind/DaisyUI initialized!');
+    console.log('Ease website ADVANCED edition initialized!');
 });
