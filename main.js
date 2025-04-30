@@ -1,7 +1,7 @@
 gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded. Initializing Simplified & Clean Tailwind/DaisyUI site...');
+    console.log('DOM loaded. Initializing Corrected Simplified Tailwind/DaisyUI site...');
 
     const select = (selector) => document.querySelector(selector);
     const selectAll = (selector) => document.querySelectorAll(selector);
@@ -107,5 +107,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initAnimations();
     setupButtonClickFeedback();
 
-    console.log('Ease website Simplified edition initialized!');
+    console.log('Ease website Corrected Simplified V3 initialized!');
 });

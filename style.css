@@ -21,7 +21,7 @@ html {
 
 .text-shadow-custom { text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); }
 .hero-bg-elements { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-.hero-bg-el { position: absolute; border-radius: 9999px; animation: rotate-scale 30s infinite linear alternate; @apply bg-white/10; }
+.hero-bg-el { position: absolute; border-radius: 9999px; animation: rotate-scale 30s infinite linear alternate; @apply bg-white/5; }
 .hero-bg-el.el-1 { @apply w-48 h-48 md:w-72 md:h-72 top-[-50px] left-[-100px]; animation-duration: 40s; }
 .hero-bg-el.el-2 { @apply w-64 h-64 md:w-96 md:h-96 bottom-[-150px] right-[-150px]; animation-duration: 35s; animation-delay: -5s; }
 .hero-bg-el.el-3 { @apply w-32 h-32 md:w-48 md:h-48 top-[30%] right-[15%]; animation-duration: 25s; animation-delay: -10s;}
