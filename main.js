@@ -1,7 +1,7 @@
 gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded. Initializing Simplified Animations V4...');
+    console.log('DOM loaded. Initializing Simplified V5...');
 
     const select = (selector) => document.querySelector(selector);
     const selectAll = (selector) => document.querySelectorAll(selector);
@@ -47,48 +47,37 @@ document.addEventListener('DOMContentLoaded', () => {
         if (bookingForm) { bookingForm.addEventListener('submit', (e) => { e.preventDefault(); if (!validateDates()) return; const formData = new FormData(bookingForm); const city = modalCityDisplay.textContent.replace('Selected City: ', ''); const checkin = formData.get('checkin'); const checkout = formData.get('checkout'); const rooms = formData.get('rooms'); const guests = formData.get('guests'); console.log('Searching for stays:', { city, checkin, checkout, rooms, guests }); alert(`Searching stays in ${city} from ${checkin} to ${checkout}.\n(Backend integration needed!)`); if(modal) modal.close(); }); }
     };
 
-    // === RE-ENABLED ANIMATIONS ===
     const initAnimations = () => {
         const defaultEase = "power3.out";
         const defaultDuration = 0.8;
 
-        // Simple reveal for hero elements
-        gsap.utils.toArray('.hero-content .anim-reveal').forEach((el, index) => {
-             gsap.fromTo(el, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: defaultDuration, ease: defaultEase, delay: 0.2 + index * 0.15 });
+        // Animate elements ONLY IF they are initially hidden by the class
+        // If CSS makes them visible by default, these might not run as expected
+        // or might cause a flicker. Best is to remove initial hiding classes if JS fails.
+
+        gsap.utils.toArray('.anim-reveal').forEach((el, index) => {
+             gsap.from(el, { opacity: 0, y: 30, duration: defaultDuration, ease: defaultEase, delay: 0.2 + index * 0.15 });
         });
 
-        // Re-enabled simple hero background element movement
         gsap.utils.toArray('.hero-bg-el').forEach((el, index) => {
-            const depth = (index + 1) * 0.2;
-            gsap.to(el, {
-                yPercent: -15 * depth,
-                ease: "none",
-                scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: 1.5 + depth }
-            });
-            gsap.to(el, {
-                 x: `random(-15, 15)%`, rotation: `random(-10, 10)`, duration: `random(15, 25)`,
-                 ease: "sine.inOut", repeat: -1, yoyo: true
-             });
+            gsap.fromTo(el, { y: gsap.utils.random(-20, 20), x: gsap.utils.random(-20, 20) }, { y: `random(-40, 40)`, x: `random(-40, 40)`, duration: gsap.utils.random(10, 15), ease: "sine.inOut", repeat: -1, yoyo: true, delay: index * 1.5 });
         });
 
-        // Re-enabled General Scroll Animation Function
         const animateOnScroll = (selector, triggerEl = null, fromState = { opacity: 0, y: 50 }, staggerVal = 0.1) => {
             const elements = gsap.utils.toArray(selector); if (elements.length === 0) return;
-            gsap.fromTo(elements, fromState, { opacity: 1, y: 0, x: 0, duration: defaultDuration, ease: defaultEase, stagger: staggerVal, scrollTrigger: { trigger: triggerEl || elements[0].parentNode, start: "top 85%", end: "bottom top", toggleActions: "play none none reset" }});
+            gsap.from(elements, { ...fromState, duration: defaultDuration, ease: defaultEase, stagger: staggerVal, scrollTrigger: { trigger: triggerEl || elements[0].parentNode, start: "top 85%", end: "bottom top", toggleActions: "play none none reset" }});
         };
 
-        // Re-enabled scroll animations
         animateOnScroll('.section-title.anim-fade-up', null, { opacity: 0, y: 40 }, 0);
         animateOnScroll('.features-section .feature-item.anim-fade-up', '.features-section .feature-list', { opacity: 0, y: 40 }, 0.1);
-        // Use anim-fade-up for destinations as well (removed anim-scroll-reveal)
         animateOnScroll('.destinations-section .destination-card.anim-fade-up', '.destinations-section .destination-list', { opacity: 0, y: 40 }, 0.1);
-        // Re-enabled image reveal (simple fade/scale)
         selectAll('.img-reveal').forEach(img => {
-            gsap.fromTo(img, { opacity: 0, scale: 1.05 }, { opacity: 1, scale: 1, duration: 1.0, ease: 'power2.out', delay: 0.1, scrollTrigger: { trigger: img.closest('.destination-card'), start: "top 85%", toggleActions: "play none none reset" }});
+            gsap.from(img, { opacity: 0, scale: 1.05, duration: 1.0, ease: 'power2.out', delay: 0.1, scrollTrigger: { trigger: img.closest('.destination-card'), start: "top 85%", toggleActions: "play none none reset" }});
         });
-        animateOnScroll('.contact-info .anim-fade-left', '.contact-info', { opacity: 0, x: -40 }, 0); // Adjusted trigger
-        animateOnScroll('.contact-form .anim-fade-right', '.contact-form', { opacity: 0, x: 40 }, 0); // Adjusted trigger
-        animateOnScroll('.contact-form .anim-form-field', '.contact-form', { opacity: 0, y: 30 }, 0.1); // Re-added form field stagger
+        animateOnScroll('.contact-info .anim-fade-up', '.contact-info', { opacity: 0, y: 30 }, 0.15);
+        animateOnScroll('.contact-form .anim-form-field', '.contact-form', { opacity: 0, y: 30 }, 0.1);
+        animateOnScroll('.contact-info.anim-fade-left', '#contact .columns', { opacity: 0, x: -40 }, 0);
+        animateOnScroll('.contact-form.anim-fade-right', '#contact .columns', { opacity: 0, x: 40 }, 0.1); // Added slight stagger delay
 
     };
 
@@ -124,8 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setupNavbarToggle();
     setupSmoothScroll();
     setupBookingModal();
-    initAnimations(); // Re-enabled call
+    initAnimations(); // Re-enabled animations
     setupButtonClickFeedback();
 
-    console.log('Ease website Re-enabled Animations V4 initialized!');
+    console.log('Ease website V5 Initialized with Fallback Visibility');
 });

@@ -22,16 +22,16 @@ html {
 .text-shadow-custom { text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); }
 .hero-bg-elements { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
 .hero-bg-el { position: absolute; border-radius: 9999px; @apply bg-white/5; }
-.hero-bg-el.el-1 { @apply w-48 h-48 md:w-72 md:h-72 top-[-50px] left-[-100px]; animation-duration: 40s; }
-.hero-bg-el.el-2 { @apply w-64 h-64 md:w-96 md:h-96 bottom-[-150px] right-[-150px]; animation-duration: 35s; animation-delay: -5s; }
-.hero-bg-el.el-3 { @apply w-32 h-32 md:w-48 md:h-48 top-[30%] right-[15%]; animation-duration: 25s; animation-delay: -10s;}
-/* Removed @keyframes rotate-scale to disable this specific animation */
+.hero-bg-el.el-1 { @apply w-48 h-48 md:w-72 md:h-72 top-[-50px] left-[-100px]; }
+.hero-bg-el.el-2 { @apply w-64 h-64 md:w-96 md:h-96 bottom-[-150px] right-[-150px]; }
+.hero-bg-el.el-3 { @apply w-32 h-32 md:w-48 md:h-48 top-[30%] right-[15%]; }
 
 .feature-icon-wrapper { @apply transition-transform duration-300 ease-in-out; }
 .feature-item:hover .feature-icon-wrapper { @apply scale-110 -rotate-3; }
 .feature-subtitle { @apply text-sm leading-relaxed; }
+.feature-title { margin-bottom: 0.75rem !important; min-height: 2.6em; } /* Added min-height back */
 
-.img-reveal { opacity: 0; scale: 1.05; will-change: transform, opacity; } /* Keep opacity 0 for JS reveal */
+.img-reveal { opacity: 0; scale: 1.05; } /* Start hidden for JS animation */
 .mask { -webkit-mask-size: cover; mask-size: cover; }
 
 .input:focus, .textarea:focus, .select:focus {
@@ -45,14 +45,22 @@ html {
 
 .footer a.link-hover { @apply transition-colors duration-200; }
 
-/* --- ADDED BACK Animation Base Classes --- */
+/* Ensure animated elements are initially visible if JS fails */
 .anim-fade-up, .anim-fade-left, .anim-fade-right, .anim-reveal, .anim-form-field, .anim-scroll-reveal {
-    opacity: 0;
+    opacity: 1; /* START VISIBLE */
+    transform: none; /* Reset transform */
     will-change: transform, opacity;
 }
+/* Image reveal also needs to start visible if JS fails */
+.img-reveal {
+    opacity: 1;
+    scale: 1;
+}
+
 
 .nav-link-drawer { @apply block w-full text-left px-4 py-2 rounded-md hover:bg-base-300 transition-colors duration-150; }
 
+/* Keep reduced section padding */
 .section {
     padding-top: 4rem;
     padding-bottom: 4rem;
@@ -66,3 +74,9 @@ html {
 .section-title {
     margin-bottom: 3rem !important;
 }
+
+/* Destination card text fix */
+.destination-card .card-body { display: flex; flex-direction: column; flex-grow: 1; }
+.destination-title { line-height: 1.3; margin-bottom: 0.4rem !important; word-wrap: break-word; overflow-wrap: break-word; }
+.destination-location { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.4; margin-bottom: 1rem; flex-grow: 1; word-wrap: break-word; overflow-wrap: break-word; }
+.destination-card .card-actions { margin-top: auto; }
