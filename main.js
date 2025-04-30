@@ -1,13 +1,10 @@
-gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded. Initializing Simplified & Clean Tailwind/DaisyUI site...');
 
     const select = (selector) => document.querySelector(selector);
     const selectAll = (selector) => document.querySelectorAll(selector);
-
-    // Removed Custom Cursor Logic
-    // Removed Magnetic Effect Logic
 
     const setupNavbarToggle = () => {
         const drawerCheckbox = select('#mobile-drawer');
@@ -26,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (targetElement) {
                     const drawerCheckbox = select('#mobile-drawer');
                     if(drawerCheckbox && drawerCheckbox.checked) drawerCheckbox.checked = false;
-                    let targetPosition = targetElement.offsetTop - navbarHeight - 20; // Offset
+                    let targetPosition = targetElement.offsetTop - navbarHeight - 20;
                     if (href === '#hero') targetPosition = 0;
                     window.scrollTo({ top: targetPosition, behavior: 'smooth' });
                 }
@@ -52,44 +49,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const initAnimations = () => {
         const defaultEase = "power3.out";
-        const defaultDuration = 0.8; // Standard duration
+        const defaultDuration = 0.8;
 
-        // Simple reveal for hero elements
         gsap.utils.toArray('.hero-content .anim-reveal').forEach((el, index) => {
              gsap.fromTo(el, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: defaultDuration, ease: defaultEase, delay: 0.2 + index * 0.15 });
         });
 
-        // Optional: Keep subtle hero background animation
         gsap.utils.toArray('.hero-bg-el').forEach((el, index) => { gsap.fromTo(el, { y: gsap.utils.random(-20, 20), x: gsap.utils.random(-20, 20) }, { y: `random(-40, 40)`, x: `random(-40, 40)`, duration: gsap.utils.random(10, 15), ease: "sine.inOut", repeat: -1, yoyo: true, delay: index * 1.5 }); });
 
-        // General Scroll Animation Function (Simplified)
         const animateOnScroll = (selector, triggerEl = null, fromState = { opacity: 0, y: 50 }, staggerVal = 0.1) => {
             const elements = gsap.utils.toArray(selector); if (elements.length === 0) return;
             gsap.fromTo(elements, fromState, { opacity: 1, y: 0, x: 0, duration: defaultDuration, ease: defaultEase, stagger: staggerVal, scrollTrigger: { trigger: triggerEl || elements[0].parentNode, start: "top 85%", end: "bottom top", toggleActions: "play none none reset" }});
         };
 
-        // Animate Section Titles (Simple Fade Up)
         animateOnScroll('.section-title.anim-fade-up', null, { opacity: 0, y: 40 }, 0);
-
-        // Animate Feature Items (Simple Fade Up Stagger)
         animateOnScroll('.features-section .feature-item.anim-fade-up', '.features-section .feature-list', { opacity: 0, y: 40 }, 0.1);
-
-        // Animate Destination Cards (Simple Fade Up Stagger) + Image Fade/Scale
         animateOnScroll('.destinations-section .destination-card.anim-scroll-reveal', '.destinations-section .destination-list', { opacity: 0, y: 40 }, 0.1);
         selectAll('.img-reveal').forEach(img => {
-            gsap.fromTo(img, { opacity: 0, scale: 1.05 }, { opacity: 1, scale: 1, duration: 1.0, ease: 'power2.out', delay: 0.1, // Slight delay after card starts animating
-                scrollTrigger: { trigger: img.closest('.destination-card'), start: "top 85%", toggleActions: "play none none reset" }
-            });
+            gsap.fromTo(img, { opacity: 0, scale: 1.05 }, { opacity: 1, scale: 1, duration: 1.0, ease: 'power2.out', delay: 0.1, scrollTrigger: { trigger: img.closest('.destination-card'), start: "top 85%", toggleActions: "play none none reset" }});
         });
-
-        // Animate Contact Section
         animateOnScroll('.contact-info .anim-fade-up', '.contact-info', { opacity: 0, y: 30 }, 0.15);
         animateOnScroll('.contact-form .anim-form-field', '.contact-form', { opacity: 0, y: 30 }, 0.1);
     };
 
      const setupButtonClickFeedback = () => {
         selectAll('.btn').forEach(button => {
-             if(button.closest('#ease-contact-form') && button.type === 'submit') return; // Skip contact submit button
+             if(button.closest('#ease-contact-form') && button.type === 'submit') return;
              button.addEventListener('mousedown', () => gsap.to(button, { scale: 0.95, duration: 0.1 }));
              button.addEventListener('mouseup', () => gsap.to(button, { scale: 1, duration: 0.1 }));
              button.addEventListener('mouseleave', () => gsap.to(button, { scale: 1, duration: 0.1 }));
